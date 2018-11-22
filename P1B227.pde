@@ -32,5 +32,8 @@ void mouseClicked(){
   }
 }
 void keyPressed(){
-  counter.stopTimer(); //<>//
+  if(key == ' '){
+  counter.stopTimer();} //<>//
+  if(key=='b'){
+    counter.saveTime();}
 }
