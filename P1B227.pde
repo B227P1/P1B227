@@ -22,7 +22,6 @@ void draw(){
   }
   
   text(counter.getHour()+" "+counter.getMinute()+" "+counter.getSecond(),width/2,height/2);
-  print(counter.timeSum);
 }
 
 void mouseClicked(){
