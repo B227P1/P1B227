@@ -1,6 +1,7 @@
 //Main file subject to change <mikkel was here>
 MCButton homeB;
 MCButton gecbutton;
+Counter counter = new Counter();
 
 void setup(){
   size(470,832);
@@ -20,12 +21,17 @@ void draw(){
     homeB.setBColor(0,0,200);
   }
   
+  text(counter.getHour()+" "+counter.getMinute()+" "+counter.getSecond(),width/2,height/2);
+  print(counter.timeSum);
 }
 
 void mouseClicked(){
-  loop();
+  
   if(homeB.mouseHovered() == true){
-    rect(width/2,height/2,200,200,20);
-    noLoop();
+    //rect(width/2,height/2,200,200,20);
+    counter.startTimer();
   }
+}
+void keyPressed(){
+  counter.stopTimer(); //<>//
 }
