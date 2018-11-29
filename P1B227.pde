@@ -1,39 +1,62 @@
 //Main file subject to change <mikkel was here>
-MCButton homeB;
-MCButton gecbutton;
-Counter counter = new Counter();
+int appState; // determines which state program is in
+PImage[] images = new PImage[10]; // array for the images used
+
+MainScreen MainScreen = new MainScreen();
+DailyInput DailyInput = new DailyInput();
+Alarm Alarm = new Alarm();
+SleepTimer SleepTimer = new SleepTimer();
+Logs Logs = new Logs();
+Settings Settings = new Settings();
 
 void setup(){
   size(470,832);
-  homeB = new MCButton();
-  gecbutton = new MCButton();
-  homeB.setText("Mi van gecc");
-  homeB.setPosSize(new PVector(60,60),new PVector(50,50));
+  images[0] = loadImage("test.jpg");
+  images[1] = loadImage("dailyinput.jpg");
+  images[2] = loadImage("alarm.png");
+  images[3] = loadImage("sleep_timer.png");
+  images[4] = loadImage("logs.png");
+  images[5] = loadImage("settings.png");
+  appState = 1;
+  
   
   
 }
 
 void draw(){
-  background(100);
-  homeB.setBColor(200,200,10);
-  homeB.render();
-  if(homeB.mouseHovered() == true){
-    homeB.setBColor(0,0,200);
-  }
+  switch(appState){
+    case 0:
+    
+    case 1:
+      MainScreen.render();
+      break;
+    case 2:
+      DailyInput.render();
+      break;
+    case 3:
+      Alarm.render();
+      break;
+    case 4:
+      SleepTimer.render();
+      break;
+    case 5:
+      Logs.render();
+      break;
+    case 6:
+      Settings.render();
+      break;
+    }
   
-  text(counter.getHour()+" "+counter.getMinute()+" "+counter.getSecond(),width/2,height/2);
+
 }
+  
+ 
 
 void mouseClicked(){
+  appState++;
   
-  if(homeB.mouseHovered() == true){
-    //rect(width/2,height/2,200,200,20);
-    counter.startTimer();
-  }
 }
+
 void keyPressed(){
-  if(key == ' '){
-  counter.stopTimer();} //<>//
-  if(key=='b'){
-    counter.saveTime();}
+  //<>//
 }
