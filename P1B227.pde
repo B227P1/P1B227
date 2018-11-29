@@ -17,16 +17,18 @@ void setup(){
   images[3] = loadImage("sleep_timer.png");
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
+  images[6] = loadImage("starplaceholder.jpg");
   appState = 1;
+  frameRate(60);
   
-  
+  MainScreen.setStarCount(3);
   
 }
 
 void draw(){
   switch(appState){
     case 0:
-    
+      break;
     case 1:
       MainScreen.render();
       break;
