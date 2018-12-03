@@ -10,7 +10,7 @@ Alarm Alarm = new Alarm();
 SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
-Customization Customization = new Customization();
+
 
 void setup(){
   size(470,832);
@@ -29,6 +29,7 @@ void setup(){
 starCount = 3;
   
 }
+Customization Customization = new Customization(); // FIX THIS SHIT BOI
 
 void draw(){
   switch(appState){
