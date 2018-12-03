@@ -1,7 +1,7 @@
 // Class for everything on the main screen
 
 class MainScreen {
-int starCount;
+//int starCount; might delete
 String adviceText;  
   
   

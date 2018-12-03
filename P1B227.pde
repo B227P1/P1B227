@@ -1,5 +1,6 @@
 //Main file subject to change <mikkel was here>
 int appState; // determines which state program is in
+int starCount;
 PImage[] images = new PImage[10]; // array for the images used
 PShape starShape;
 
@@ -9,6 +10,7 @@ Alarm Alarm = new Alarm();
 SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
+Customization Customization = new Customization();
 
 void setup(){
   size(470,832);
@@ -20,10 +22,11 @@ void setup(){
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
   images[6] = loadImage("starplaceholder.jpg");
+  images[7] = loadImage("customization.png");
   appState = 1;
   frameRate(60);
   
-  MainScreen.starCount = 3;
+starCount = 3;
   
 }
 
@@ -50,6 +53,10 @@ void draw(){
     case 6:
       Settings.render();
       break;
+    case 7:
+      Customization.render();
+      break;
+      
     }
   
 
@@ -64,4 +71,15 @@ void mouseClicked(){
 
 void keyPressed(){
   //<>//
+}
+
+
+//--SAVE FUNCTION--
+void saveData(){
+  
+}
+
+//--LOAD FUNCTION--
+void loadData(){
+  
 }
