@@ -1,7 +1,6 @@
 class MCButton { 
   color buttonColor = color(255);
   PVector start = new PVector(width/2, height/2), size = new PVector(200, 100);
-  String Text;
 
   MCLabel Label = new MCLabel(); 
 
