@@ -3,6 +3,8 @@ int appState; // determines which state program is in
 int starCount;
 PImage[] images = new PImage[10]; // array for the images used
 PShape starShape;
+int sizeX, sizeY;
+boolean init = false;
 
 MainScreen MainScreen = new MainScreen();
 DailyInput DailyInput = new DailyInput();
@@ -10,11 +12,13 @@ Alarm Alarm = new Alarm();
 SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
-Menu Menu = new Menu();
+Customization Customization = new Customization();
 
 
 void setup(){
   size(470,832);
+  sizeX = width; 
+  sizeY = height;
   starShape = loadShape("star.svg");
   images[0] = loadImage("test.jpg");
   images[1] = loadImage("dailyinput.jpg");
@@ -30,9 +34,10 @@ void setup(){
 starCount = 3;
   
 }
-Customization Customization = new Customization(); // FIX THIS
+
 
 void draw(){
+  
   switch(appState){
     case 0:
       break;
@@ -67,6 +72,11 @@ void draw(){
  
 
 void mouseClicked(){
+  if(init == false){
+  Customization.setupButtons();
+  init = true;
+  }
+  
   appState++;
   
 }
