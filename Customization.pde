@@ -1,9 +1,17 @@
 
 class Customization{
-int pageState = 2;
+int pageState = 1;
+byte[] hatsOwned = new byte[3];
+//PVector 
+
   MCButton InventoryButton = new MCButton();
   MCButton ShopButton = new MCButton();
   
+Customization(){
+  hatsOwned[0] = 1;
+  hatsOwned[1] = 1;
+  hatsOwned[2] = 0;
+}
   
  void setupButtons(){
    InventoryButton.start = new PVector(sizeX/4,sizeY/6*4);
@@ -36,7 +44,15 @@ int pageState = 2;
      ShopButton.buttonColor = color(255);
    }
    
-   
+   if(pageState == 1){
+     
+     for(int i = 0; i < hatImages.length; i++){
+       if(hatsOwned[i] == 1){
+         pushMatrix();
+         scale(0.7);
+         image(hatImages[i],i*170+30,height*1.1);
+         popMatrix();
+   }}}
    
    InventoryButton.render();
    ShopButton.render();

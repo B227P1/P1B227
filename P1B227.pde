@@ -2,6 +2,7 @@
 int appState; // determines which state program is in
 int starCount;
 PImage[] images = new PImage[20]; // array for the images used
+PImage[] hatImages = new PImage[3];
 PShape starShape;
 int sizeX, sizeY;
 boolean init = false;
@@ -32,9 +33,9 @@ void setup(){
   images[8] = loadImage("lizard3.png");
   images[9] = loadImage("lizard1.png");
   images[10] = loadImage("lizard2.png");
-  images[11] = loadImage("TopHat.png");
-  images[12] = loadImage("SortingHat.png");
-  images[13] = loadImage("WizardHat.png");
+  hatImages[0] = loadImage("TopHat.png");
+  hatImages[1] = loadImage("SortingHat.png");
+  hatImages[2] = loadImage("WizardHat.png");
   appState = 6;
   frameRate(60);
   
