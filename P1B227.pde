@@ -13,6 +13,7 @@ SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
 Customization Customization = new Customization();
+Menu Menu = new Menu();
 
 
 void setup(){
