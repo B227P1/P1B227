@@ -10,6 +10,7 @@ Alarm Alarm = new Alarm();
 SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
+Menu Menu = new Menu();
 
 
 void setup(){

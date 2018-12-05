@@ -4,15 +4,16 @@ class MCButton {
 
   MCLabel Label = new MCLabel(); 
 
-// determines what happens when the curor is over the button
+  // determines what happens when the curor is over the button
   boolean mouseHovered() {
-    if (mouseX > start.x-size.x && mouseX < start.x+size.x && mouseY > start.y-size.y && mouseY < start.y+size.y) {
+    if (mouseX > start.x-size.x && mouseX < start.x+size.x && mouseY > start.y-size.y && mouseY < start.y+size.y) { 
       return true;
+    } else {
+      return false;
     }
-    return false;
   }
 
-// renders the button
+  // renders the button
   void render() {
     rectMode(RADIUS);
     fill(buttonColor);
