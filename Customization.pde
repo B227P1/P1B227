@@ -6,10 +6,10 @@ int pageState = 0;
   
   
 Customization(){
-    InventoryButton.start = new PVector(0,height);
-    InventoryButton.size = new PVector(width/2,50);
+    InventoryButton.start = new PVector(0,height); //height problematic
+    InventoryButton.size = new PVector(width/2,50); // same with width
     println(InventoryButton.start);
-    println(InventoryButton.size);
+    println(InventoryButton.size); // just for debug
     println(height);
   }
   

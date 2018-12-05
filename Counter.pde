@@ -1,10 +1,10 @@
 // Counter class, to time the amount of sleep the user gets.
 
 class Counter{
-  int startTime = 0;
+  int startTime;
   boolean running = false;
   long[] sleepTimes = new long[0];
-  long timeSum = 0;
+  long timeSum;
   
 // Starts the timer  
 void startTimer(){
@@ -36,8 +36,8 @@ long getHour(){
   return timeSum/1000/60/60%24;
 }
 
-// saves the time
+// saves the time | UNFINISHED
 void saveTime(){
-  //sleepTimes = append(sleepTimes,timeSum); // fix this shit boy
+  //sleepTimes = append(sleepTimes,timeSum); // fix this
 } //<>// //<>// //<>// //<>// //<>//
 }

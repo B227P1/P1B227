@@ -30,7 +30,7 @@ void setup(){
 starCount = 3;
   
 }
-Customization Customization = new Customization(); // FIX THIS SHIT BOI
+Customization Customization = new Customization(); // FIX THIS
 
 void draw(){
   switch(appState){
