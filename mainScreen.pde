@@ -16,8 +16,13 @@ class MainScreen {
     image(images[0], 0, 0, width, height);
     //text(adviceText,0,0);
     //println(isLizardHovered(),width/2,height/2);
-    ellipse(width/4, height/6*4.5, 100, 100);
+    imageMode(CENTER);
+    image(images[8],width/4,height/6*5,245,175);
+    imageMode(CORNER);
+    
   }
+  
+  
   boolean isLizardHovered() {
     if (dist(mouseX, mouseY, width/4, height/6*4.5)<50) { //placeholder values
       return true;

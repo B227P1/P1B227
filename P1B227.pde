@@ -1,7 +1,7 @@
 //Main file subject to change <mikkel was here>
 int appState; // determines which state program is in
 int starCount;
-PImage[] images = new PImage[10]; // array for the images used
+PImage[] images = new PImage[20]; // array for the images used
 PShape starShape;
 int sizeX, sizeY;
 boolean init = false;
@@ -21,15 +21,21 @@ void setup(){
   sizeX = width; 
   sizeY = height;
   starShape = loadShape("star.svg");
-  images[0] = loadImage("test.jpg");
+  images[0] = loadImage("mainscreen.jpg");
   images[1] = loadImage("dailyinput.jpg");
   images[2] = loadImage("alarm.png");
   images[3] = loadImage("sleep_timer.png");
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
-  images[6] = loadImage("starplaceholder.jpg");
+  images[6] = loadImage("starplaceholder.jpg"); // delet this
   images[7] = loadImage("customization.png");
-  appState = 1;
+  images[8] = loadImage("lizard3.png");
+  images[9] = loadImage("lizard1.png");
+  images[10] = loadImage("lizard2.png");
+  images[11] = loadImage("TopHat.png");
+  images[12] = loadImage("SortingHat.png");
+  images[13] = loadImage("WizardHat.png");
+  appState = 6;
   frameRate(60);
   
 starCount = 3;
@@ -78,12 +84,23 @@ void mouseClicked(){
   init = true;
   }
   
-  appState++;
+  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
+  if(Customization.InventoryButton.mouseHovered() && appState == 7){
+    Customization.pageState = 1;
+  }
+  if(Customization.ShopButton.mouseHovered() && appState == 7){
+    Customization.pageState = 2;
+  }
   
 }
 
 void keyPressed(){
-  //<>//
+  if(keyCode == LEFT){
+    appState--;
+  }
+  if(keyCode == RIGHT){
+    appState++;
+  } //<>//
 }
 
 
