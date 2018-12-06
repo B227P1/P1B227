@@ -1,7 +1,7 @@
 class Menu {
   PImage Burger = loadImage("Burger.png");
   Boolean Open = false;
-  int MenuAmount = 7;
+  int MenuAmount = 6;
   PVector MenuSize = new PVector(width/2, height/3), BurgerOffset = new PVector(width*0.05, width*0.05), BurgerSize = new PVector(width*0.15, width*0.15);
   ArrayList<MCButton> MenuButtons = new ArrayList<MCButton>();
 
@@ -13,15 +13,14 @@ class Menu {
       MenuButtons.get(i).Label.textColor = color(255);
       MenuButtons.get(i).start = new PVector (MenuSize.x/2, MenuSize.y/MenuAmount*(i+1)-(MenuSize.y/MenuAmount/2));
       MenuButtons.get(i).size = new PVector(MenuSize.x/2, MenuSize.y/MenuAmount/2);
-      MenuButtons.get(i).ColorOnHover = true;
+      MenuButtons.get(i).ColorOnHover = false;
     }
     MenuButtons.get(0).Label.Text = "Menu";
     MenuButtons.get(1).Label.Text = "Daily input";
     MenuButtons.get(2).Label.Text = "Alarm";
     MenuButtons.get(3).Label.Text = "Sleep timer";
     MenuButtons.get(4).Label.Text = "Logs";
-    MenuButtons.get(5).Label.Text = "Settings";
-    MenuButtons.get(6).Label.Text = "Customization";
+    MenuButtons.get(5).Label.Text = "Customization";
   }
 
   void render() {

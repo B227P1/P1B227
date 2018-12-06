@@ -39,7 +39,7 @@ void setup() {
   hatImages[0] = loadImage("TopHat.png");
   hatImages[1] = loadImage("SortingHat.png");
   hatImages[2] = loadImage("WizardHat.png");
-  appState = 6;
+  appState = 0;
   frameRate(60);
 
   starCount = 15;
@@ -71,11 +71,8 @@ void draw() {
     Logs.render();
     break;
   case 6:
-    Settings.render();
-    break; //<>//
-  case 7:
     Customization.render(); //<>//
-    break; //<>//
+    break; //<>// //<>//
   }
 
   Menu.render();
@@ -119,13 +116,13 @@ void mouseClicked() {
   }
 
 
-  if (mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerSize.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
+  if (mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
     Menu.Open = !Menu.Open;
   } else if (Menu.Open) {
     for (int i = 0; i < Menu.MenuAmount; i++) {
       if (Menu.MenuButtons.get(i).mouseHovered()) {
         Menu.Open = false;
-        appState = i;
+        appState = i+1;
       } //<>//
     }
   }
@@ -138,7 +135,7 @@ void keyPressed() {
   }
   if (keyCode == RIGHT) {
     appState++;
-    appState = appState > 7 ? 7 : appState;
+    appState = appState > 6 ? 6 : appState;
   } //<>//
 }
 
