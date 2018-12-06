@@ -6,8 +6,15 @@ class MainScreen {
 
 
   void setStarPositions() {
+    int j = 0;
+    int k = 0;
     for (int i = 0; i < starCount; i++) {
-      shape(starShape, i*50+50, 30, 30, 30);
+      shape(starShape, j*50+50,k*50+30, 30, 30);
+      j++;
+      if(j>7){
+        j = 0;
+        k++;
+      }
     }
   }  
 

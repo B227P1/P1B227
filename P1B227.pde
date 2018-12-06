@@ -6,6 +6,7 @@ PImage[] hatImages = new PImage[3];
 PShape starShape;
 int sizeX, sizeY;
 boolean init = false;
+PFont freestyle;
 
 MainScreen MainScreen = new MainScreen();
 DailyInput DailyInput = new DailyInput();
@@ -23,6 +24,7 @@ void setup(){
   sizeX = width; 
   sizeY = height;
   starShape = loadShape("star.svg");
+  freestyle = loadFont("freestyle.vlw");
   images[0] = loadImage("mainscreen.jpg");
   images[1] = loadImage("dailyinput.jpg");
   images[2] = loadImage("alarm.png");
@@ -40,9 +42,9 @@ void setup(){
   appState = 6;
   frameRate(60);
   
-starCount = 3;
-hatEquipped = 2;
-  
+starCount = 15;
+hatEquipped = 0;
+textFont(freestyle);
 }
 
 
@@ -76,7 +78,7 @@ void draw(){
       
     }
   
-  Menu.render();
+  //Menu.render();
 
 }
   
@@ -105,6 +107,16 @@ void mouseClicked(){
   } //<>//
   if(appState == 7 && Customization.slot1Hovered() && Customization.pageState == 1){
     hatEquipped = Customization.inventorySlots[1];
+  }
+  
+  // --- BUTTONS FOR BUYING HATS ---
+  if(appState == 7 && Customization.slot0Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[0]] >0){
+    starCount -= Customization.hatPrices[Customization.inventorySlots[0]];
+    Customization.hatsOwned[Customization.inventorySlots[0]] = 1;
+  }
+  if(appState == 7 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0){
+    starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
+    Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
   }
 }
 

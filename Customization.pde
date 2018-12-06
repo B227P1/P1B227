@@ -3,6 +3,7 @@ class Customization{
 int pageState = 1;
 byte[] hatsOwned = new byte[3];
 byte[] inventorySlots = new byte[2];
+byte[] hatPrices = new byte[3];
 
 
   MCButton InventoryButton = new MCButton();
@@ -11,7 +12,10 @@ byte[] inventorySlots = new byte[2];
 Customization(){
   hatsOwned[0] = 1;
   hatsOwned[1] = 0;
-  hatsOwned[2] = 1;
+  hatsOwned[2] = 0;
+  hatPrices[0] = 5;
+  hatPrices[1] = 8;
+  hatPrices[2] = 10;
 }
   
  void setupButtons(){
@@ -31,24 +35,25 @@ Customization(){
    shape(starShape,width/5+25,height/6-17,40,40);
    
    if(pageState == 1){
-     InventoryButton.buttonColor = color(155);
+     InventoryButton.buttonColor = color(155,155,155,30);
    }else if(InventoryButton.mouseHovered()){
-     InventoryButton.buttonColor = color(200);
+     InventoryButton.buttonColor = color(200,200,200,30);
    }else{
-     InventoryButton.buttonColor = color(255);
+     InventoryButton.buttonColor = color(255,255,255,30);
    }
    if(pageState == 2){
-     ShopButton.buttonColor = color(155);
+     ShopButton.buttonColor = color(155,155,155,30);
    }else if(ShopButton.mouseHovered()){
-     ShopButton.buttonColor = color(200);
+     ShopButton.buttonColor = color(200,200,200,30);
    }else{
-     ShopButton.buttonColor = color(255);
+     ShopButton.buttonColor = color(255,255,255,30);
    }
    imageMode(CENTER);
    image(images[8],width/2,height/2*0.9,300,215);
    equipHat();
    imageMode(CORNER);
    
+   // INVENTORY WINDOW
    if(pageState == 1){   
      byte j = 0;
      for(byte i = 0; i < hatImages.length; i++){
@@ -64,14 +69,18 @@ Customization(){
          }
    }}}
    
+   // SHOP WINDOW
    if(pageState == 2){
-     int j = 0;
-     for(int i = 0; i < hatImages.length; i++){
+     byte j = 0;
+     for(byte i = 0; i < hatImages.length; i++){
        if(hatsOwned[i] == 0){
          pushMatrix();
          scale(0.7);
          image(hatImages[i],j*330+50,height*1.02);
          popMatrix();
+         inventorySlots[j] = i;
+         shape(starShape,j*230+125,height*0.92,40,40);
+         text(hatPrices[i],j*230+100,height*0.942);
          j++;
        }}}
 
