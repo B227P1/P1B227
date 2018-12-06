@@ -14,11 +14,12 @@ SleepTimer SleepTimer = new SleepTimer();
 Logs Logs = new Logs();
 Settings Settings = new Settings();
 Customization Customization = new Customization();
-Menu Menu = new Menu();
+Menu Menu;
 
 
 void setup(){
   size(470,832);
+    Menu = new Menu();
   sizeX = width; 
   sizeY = height;
   starShape = loadShape("star.svg");
@@ -71,10 +72,11 @@ void draw(){
       break;
     case 7:
       Customization.render();
-      break;
+      break; //<>//
       
     }
   
+  Menu.render();
 
 }
   

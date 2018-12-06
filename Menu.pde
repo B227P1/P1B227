@@ -22,6 +22,10 @@ class Menu {
   }
 
   void render() {
+    for (int i = 0; i < MenuAmount; i++){
+    MenuButtons.get(i).buttonColor = color(150);
+    }
+    
     MenuButtons.get(appState-1).buttonColor = color(200);
     
     for (int i = 0; i < MenuButtons.size(); i++) {
