@@ -2,6 +2,7 @@
 class Customization{
 int pageState = 1;
 byte[] hatsOwned = new byte[3];
+byte[] inventorySlots = new byte[2];
 
 
   MCButton InventoryButton = new MCButton();
@@ -10,7 +11,7 @@ byte[] hatsOwned = new byte[3];
 Customization(){
   hatsOwned[0] = 1;
   hatsOwned[1] = 0;
-  hatsOwned[2] = 0;
+  hatsOwned[2] = 1;
 }
   
  void setupButtons(){
@@ -49,12 +50,18 @@ Customization(){
    imageMode(CORNER);
    
    if(pageState == 1){   
-     for(int i = 0; i < hatImages.length; i++){
+     byte j = 0;
+     for(byte i = 0; i < hatImages.length; i++){
        if(hatsOwned[i] == 1){
          pushMatrix();
          scale(0.7);
-         image(hatImages[i],i*330+50,height*1.02);
+         image(hatImages[i],j*330+50,height*1.02);
          popMatrix();
+         inventorySlots[j] = i;
+         j++;
+         if(hatEquipped == i){
+           ellipse(j*125+50,height/6*4.5,20,20);
+         }
    }}}
    
    if(pageState == 2){
@@ -91,5 +98,17 @@ Customization(){
    popMatrix();
   }
   
-  
+  boolean slot0Hovered(){
+    if(mouseX>width*0.07 && mouseX<width*0.4 && mouseY>height*0.71 && mouseY<height*0.9){
+      return true;
+    }else{
+      return false;
+    }}
+    
+  boolean slot1Hovered(){
+    if(mouseX>width*0.61 && mouseX<width*0.87 && mouseY>height*0.71 && mouseY<height*0.9){
+      return true;
+    }else{
+      return false;
+    }}
 }

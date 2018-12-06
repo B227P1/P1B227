@@ -41,7 +41,7 @@ void setup(){
   frameRate(60);
   
 starCount = 3;
-hatEquipped = 0;
+hatEquipped = 2;
   
 }
 
@@ -87,6 +87,9 @@ void mouseClicked(){
   Customization.setupButtons();
   init = true;
   }
+  //println("-----");
+  //println(mouseX);
+  //println(mouseY);
   
   // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
   if(Customization.InventoryButton.mouseHovered() && appState == 7){
@@ -96,6 +99,13 @@ void mouseClicked(){
     Customization.pageState = 2;
   }
   
+  // --- BUTTONS FOR EQUIPPING HATS ---
+  if(appState == 7 && Customization.slot0Hovered() && Customization.pageState == 1){
+    hatEquipped = Customization.inventorySlots[0];
+  } //<>//
+  if(appState == 7 && Customization.slot1Hovered() && Customization.pageState == 1){
+    hatEquipped = Customization.inventorySlots[1];
+  }
 }
 
 void keyPressed(){
