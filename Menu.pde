@@ -1,27 +1,31 @@
 class Menu {
+  int MenuAmount = 7;
   PVector MenuSize = new PVector(width/2, height/3);
-
-  MCButton[] MenuButtons = new MCButton[7];
+  ArrayList<MCButton> MenuButtons = new ArrayList<MCButton>();
 
   Menu() {
-    for (int i = 0; i < MenuButtons.length; i++) {
-    //  MenuButtons[i].buttonColor = color(0);
-    //  MenuButtons[i].Label.textColor = color(255);
-    //  MenuButtons[i].start = new PVector (MenuSize.x/2, MenuSize.y/MenuButtons.length*(i+1)-(MenuSize.y/MenuButtons.length)/2);
-    //  MenuButtons[i].size = new PVector(MenuSize.x/2, MenuSize.y/MenuButtons.length*(i+1));
+    for (int i = 0; i < MenuAmount; i++) {
+      MenuButtons.add(new MCButton());
+      MenuButtons.get(i).buttonColor = color(150);
+      MenuButtons.get(i).buttonAltColor = color(200);
+      MenuButtons.get(i).Label.textColor = color(255);
+      MenuButtons.get(i).start = new PVector (MenuSize.x/2, MenuSize.y/MenuAmount*(i+1)-(MenuSize.y/MenuAmount/2));
+      MenuButtons.get(i).size = new PVector(MenuSize.x/2, MenuSize.y/MenuAmount/2);
     }
-    //MenuButtons[0].Label.Text = "Menu";
-    //MenuButtons[1].Label.Text = "Shop";
-    //MenuButtons[2].Label.Text = "Daily input";
-    //MenuButtons[3].Label.Text = "Alarm";
-    //MenuButtons[4].Label.Text = "Sleep timer";
-    //MenuButtons[5].Label.Text = "Logs";
-    //MenuButtons[6].Label.Text = "Settings";
+    MenuButtons.get(0).Label.Text = "Menu";
+    MenuButtons.get(1).Label.Text = "Daily input";
+    MenuButtons.get(2).Label.Text = "Alarm";
+    MenuButtons.get(3).Label.Text = "Sleep timer";
+    MenuButtons.get(4).Label.Text = "Logs";
+    MenuButtons.get(5).Label.Text = "Settings";
+    MenuButtons.get(6).Label.Text = "Customization";
   }
 
   void render() {
-    for (int i = 0; i < MenuButtons.length; i++) {
-      MenuButtons[6].render();
+    MenuButtons.get(appState-1).buttonColor = color(200);
+    
+    for (int i = 0; i < MenuButtons.size(); i++) {
+      MenuButtons.get(i).render();
     }
   }
 }

@@ -1,5 +1,6 @@
 class MCButton { 
-  color buttonColor = color(255);
+  Boolean ColorOnHover = false;
+  color buttonColor = color(255), buttonAltColor = color(255);
   PVector start = new PVector(width/2, height/2), size = new PVector(200, 100);
 
   MCLabel Label = new MCLabel(); 
@@ -16,7 +17,11 @@ class MCButton {
   // renders the button
   void render() {
     rectMode(RADIUS);
-    fill(buttonColor);
+    if (mouseHovered() || !ColorOnHover) {
+      fill(buttonColor);
+    } else {
+      fill(buttonAltColor);
+    }
 
     rect(start.x, start.y, size.x, size.y);
 
