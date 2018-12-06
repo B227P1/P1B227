@@ -11,7 +11,7 @@ class MCLabel {
 
     textsize = 1;
     textSize(textsize);
-    while (textWidth(Text)/2<size.x && ((textDescent()+textAscent())/2<size.y)) {
+    while (textWidth(Text)*0.5<size.x && ((textDescent()+textAscent())*0.75<size.y)) {
       textsize++;
       textSize(textsize);
     }
