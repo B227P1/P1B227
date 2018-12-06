@@ -1,6 +1,6 @@
 //Main file subject to change <mikkel was here>
 int appState; // determines which state program is in
-int starCount;
+int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
 PImage[] hatImages = new PImage[3];
 PShape starShape;
@@ -29,7 +29,7 @@ void setup(){
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
   images[6] = loadImage("starplaceholder.jpg"); // delet this
-  images[7] = loadImage("customization.png");
+  images[7] = loadImage("customization.jpg");
   images[8] = loadImage("lizard3.png");
   images[9] = loadImage("lizard1.png");
   images[10] = loadImage("lizard2.png");
@@ -40,6 +40,7 @@ void setup(){
   frameRate(60);
   
 starCount = 3;
+hatEquipped = 0;
   
 }
 
