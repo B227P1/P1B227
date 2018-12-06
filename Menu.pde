@@ -1,4 +1,6 @@
 class Menu {
+  PImage Burger = loadImage("Burger.png");
+  Boolean Open = false;
   int MenuAmount = 7;
   PVector MenuSize = new PVector(width/2, height/3);
   ArrayList<MCButton> MenuButtons = new ArrayList<MCButton>();
@@ -22,14 +24,19 @@ class Menu {
   }
 
   void render() {
-    for (int i = 0; i < MenuAmount; i++){
-    MenuButtons.get(i).buttonColor = color(150);
-    }
-    
-    MenuButtons.get(appState-1).buttonColor = color(200);
-    
-    for (int i = 0; i < MenuButtons.size(); i++) {
-      MenuButtons.get(i).render();
+
+
+    if (Open) {
+      for (int i = 0; i < MenuAmount; i++) {
+        MenuButtons.get(i).buttonColor = color(150);
+      }
+      MenuButtons.get(appState-1).buttonColor = color(200);
+
+      for (int i = 0; i < MenuButtons.size(); i++) {
+        MenuButtons.get(i).render();
+      }
+    } else {
+      image(Burger, width*0.05, width*0.05, width*0.15, width*0.15);
     }
   }
 }
