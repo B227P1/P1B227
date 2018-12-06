@@ -27,7 +27,7 @@ void setup() {
   freestyle = loadFont("freestyle.vlw");
   images[0] = loadImage("mainscreen.jpg");
   images[1] = loadImage("dailyinput.jpg");
-  images[2] = loadImage("alarm.png");
+  images[2] = loadImage("alarm.jpg");
   images[3] = loadImage("sleep_timer.png");
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
@@ -74,7 +74,7 @@ void draw() {
     Settings.render();
     break; //<>//
   case 7:
-    Customization.render();
+    Customization.render(); //<>//
     break; //<>//
   }
 
@@ -104,7 +104,7 @@ void mouseClicked() {
   if (appState == 7 && Customization.slot0Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[0];
   } //<>//
-  if (appState == 7 && Customization.slot1Hovered() && Customization.pageState == 1) {
+  if (appState == 7 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
     hatEquipped = Customization.inventorySlots[1];
   }
 
@@ -126,7 +126,7 @@ void mouseClicked() {
       if (Menu.MenuButtons.get(i).mouseHovered()) {
         Menu.Open = false;
         appState = i;
-      }
+      } //<>//
     }
   }
 }
