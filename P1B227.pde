@@ -72,8 +72,8 @@ void draw() {
   case 2:
     DailyInput.render();
     break;
-  case 3: //<>//
-    Alarm.render(); //<>//
+  case 3: //<>// //<>//
+    Alarm.render(); //<>// //<>//
     break;
   case 4:
     SleepTimer.render();
@@ -101,8 +101,8 @@ void mouseClicked() {
   println(mouseY);
 
   // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
-  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>//
-    Customization.pageState = 1; //<>//
+  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>// //<>//
+    Customization.pageState = 1; //<>// //<>//
   }
   if (Customization.ShopButton.mouseHovered() && appState == 6) {
     Customization.pageState = 2;
@@ -124,7 +124,7 @@ void mouseClicked() {
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
     Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
-  } //<>//
+  } //<>// //<>//
   
   // --- BUTTONS IN DAILYINPUT ---
   
@@ -137,8 +137,14 @@ void mouseClicked() {
   if(DailyInput.energizedHovered()){
     DailyInput.energy = 1;
   }
-  if(DailyInput.tiredHovered()){ //<>//
+  if(DailyInput.tiredHovered()){ //<>// //<>//
     DailyInput.energy= 2;
+  }
+   if(DailyInput.wakeTimeHovered()){
+    DailyInput.pageState = 2;
+  }
+  if(DailyInput.bedTimeHovered()){
+    DailyInput.pageState = 3;
   }
   
 
