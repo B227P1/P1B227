@@ -1,6 +1,6 @@
 
 class DailyInput {
-  int pageState = 0; // 0 is default, 1 is when the popup window appears
+  int pageState = 0; // 0 is default, 1 is when the popup window appears, 2 is when wakeup input is active, 3 is when bedtime input is active
   int productive = 0, energy = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
   boolean save = false; // turns true when everything is filled out, and the data can be saved
 
@@ -10,8 +10,31 @@ class DailyInput {
 
     Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
     
+    // outlines for the selected input
+    rectMode(CENTER);
+    strokeWeight(10);
+    noFill();
+    stroke(255);
     if(productive == 1){
-      
+      rect(width*0.25,height*0.345,167,43,15);
+    }
+    if(productive == 2){
+      rect(width*0.75,height*0.345,167,43,15);
+    }
+    if(energy == 1){
+      rect(width*0.25,height*0.47,167,43,15);
+    }
+    if(energy == 2){
+      rect(width*0.75,height*0.47,167,43,15);
+    }
+    strokeWeight(5);
+    // wakeup/bed- time
+    if(pageState == 2){
+      rect(width*0.255,height*0.715,163,31,20);
+    }
+    if(pageState == 3){
+      rect(width*0.255,height*0.82,163,31,20);
+    }
     
 
     if (pageState == 1) {
