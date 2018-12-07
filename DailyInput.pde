@@ -3,6 +3,7 @@ class DailyInput {
   int pageState = 0; // 0 is default, 1 is when the popup window appears, 2 is when wakeup input is active, 3 is when bedtime input is active
   int productive = 0, energy = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
   boolean save = false; // turns true when everything is filled out, and the data can be saved
+  int wakeTimeHour, wakeTimeMinute;
 
   void render() {
     image(images[1], 0, 0, width, height);
@@ -35,6 +36,7 @@ class DailyInput {
     if(pageState == 3){
       rect(width*0.255,height*0.82,163,31,20);
     }
+    strokeWeight(1);
     
 
     if (pageState == 1) {
