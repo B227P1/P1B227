@@ -1,9 +1,113 @@
 
 class DailyInput {
-  
-  
- void render(){
-   image(images[1],0,0,width,height);
- }
-  
+  int pageState = 0; // 0 is default, 1 is when the popup window appears
+  int productive = 0, energetic = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
+  boolean save = false; // turns true when everything is filled out, and the data can be saved
+
+  void render() {
+    image(images[1], 0, 0, width, height);
+    image(images[11], width/2, height*0.76, 282, 190);
+
+    Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
+
+    if (pageState == 1) {
+      int yescol = 0, nocol = 0;
+      if (yesHovered()) {
+        yescol = 255;
+      } else {
+        yescol = 0;
+      }
+      if (noHovered()) {
+        nocol = 255;
+      } else {
+        nocol = 0;
+      }
+      rectMode(CENTER);
+      strokeWeight(1);
+      fill(210, 210, 210, 210);
+      rect(width/2, height/2, width-20, 300, 20);
+      fill(0);
+      textSize(60);
+      textAlign(CENTER);
+      text("Do you want me to set an alarm"+ENTER+"for your wake-up time?", width/2, height*0.4);
+      strokeWeight(13);
+      line(width/2, height*0.55, width/2, height*0.66);
+      fill(yescol);
+      text("YES", width*0.25, height*0.63);
+      fill(nocol);
+      text("NO", width*0.75, height*0.63);
+    }
+  }
+
+  boolean productiveHovered() {
+    if (mouseX>width*0.07 && mouseX<width*0.43 && mouseY>height*0.32 && mouseY<height*0.37 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean unproductiveHovered() {
+    if (mouseX>width*0.57 && mouseX<width*0.93 && mouseY>height*0.32 && mouseY<height*0.37 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean energizedHovered() {
+    if (mouseX>width*0.07 && mouseX<width*0.43 && mouseY>height*0.44 && mouseY<height*0.5 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean tiredHovered() {
+    if (mouseX>width*0.57 && mouseX<width*0.93 && mouseY>height*0.44 && mouseY<height*0.5 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean wakeTimeHovered() {
+    if (mouseX>width*0.08 && mouseX<width*0.43 && mouseY>height*0.7 && mouseY<height*0.73 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean bedTimeHovered() {
+    if (mouseX>width*0.08 && mouseX<width*0.43 && mouseY>height*0.8 && mouseY<height*0.84 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean saveHovered() {
+    if (mouseX>width*0.096 && mouseX<width*0.177 && mouseY>height*0.89 && mouseY<height*0.945 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean yesHovered() {
+    if (mouseX>width*0.072 && mouseX<width*0.477 && mouseY>height*0.544 && mouseY<height*0.67 && pageState == 1 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  boolean noHovered() {
+    if (mouseX>width*0.519 && mouseX<width*0.964 && mouseY>height*0.544 && mouseY<height*0.67 && pageState == 1 && appState == 2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

@@ -50,7 +50,7 @@ Customization(){
    }
    imageMode(CENTER);
    image(images[8],width/2,height/2*0.9,300,215);
-   equipHat();
+   equipHat(width/2*1.15,height/2*1.38,0.6,-20);
    imageMode(CORNER);
    
    // INVENTORY WINDOW
@@ -89,19 +89,19 @@ Customization(){
    ShopButton.render();
  }
 
-  void equipHat(){
+  void equipHat(float xpos, float ypos, float scale, float degree){
    pushMatrix();
-   scale(0.6);
-   rotate(radians(-20));
+   scale(scale);
+   rotate(radians(degree));
    switch(hatEquipped){
      case 0:
-       image(hatImages[0],width/2*1.15,height/2*1.38);
+       image(hatImages[0],xpos,ypos);
        break;
      case 1:
-       image(hatImages[1],width/2*1.15,height/2*1.38);
+       image(hatImages[1],xpos,ypos);
        break;
      case 2:
-       image(hatImages[2],width/2*1.15,height/2*1.38);
+       image(hatImages[2],xpos,ypos);
        break;
    }
    popMatrix();

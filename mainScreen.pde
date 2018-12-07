@@ -27,22 +27,7 @@ class MainScreen {
     image(images[8],width*0.23,height*0.835,275,205);
     imageMode(CORNER);
     
-    pushMatrix();
-   scale(0.6);
-   rotate(radians(-20));
-   switch(hatEquipped){
-     case 0:
-       image(hatImages[0],width*-0.5,height*1.09);
-       break;
-     case 1:
-       image(hatImages[1],width*-0.5,height*1.09);
-       break;
-     case 2:
-       image(hatImages[2],width*-0.5,height*1.09);
-       break;
-   }
-   popMatrix();
-    
+    Customization.equipHat(width*-0.5,height*1.09,0.6,-20);
   }
   
   

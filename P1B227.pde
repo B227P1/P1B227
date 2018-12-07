@@ -36,6 +36,7 @@ void setup() {
   images[8] = loadImage("lizard3.png");
   images[9] = loadImage("lizard1.png");
   images[10] = loadImage("lizard2.png");
+  images[11] = loadImage("lizard3flipped.png");
   hatImages[0] = loadImage("TopHat.png");
   hatImages[1] = loadImage("SortingHat.png");
   hatImages[2] = loadImage("WizardHat.png");
@@ -90,27 +91,27 @@ void mouseClicked() {
   println(mouseY);
 
   // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
-  if (Customization.InventoryButton.mouseHovered() && appState == 7) {
+  if (Customization.InventoryButton.mouseHovered() && appState == 6) {
     Customization.pageState = 1;
   }
-  if (Customization.ShopButton.mouseHovered() && appState == 7) {
+  if (Customization.ShopButton.mouseHovered() && appState == 6) {
     Customization.pageState = 2;
   }
 
   // --- BUTTONS FOR EQUIPPING HATS ---
-  if (appState == 7 && Customization.slot0Hovered() && Customization.pageState == 1) {
+  if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[0];
   } //<>//
-  if (appState == 7 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
+  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
     hatEquipped = Customization.inventorySlots[1];
   }
 
   // --- BUTTONS FOR BUYING HATS ---
-  if (appState == 7 && Customization.slot0Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[0]] >0) {
+  if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[0]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[0]];
     Customization.hatsOwned[Customization.inventorySlots[0]] = 1;
   }
-  if (appState == 7 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
+  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
     Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
   }
