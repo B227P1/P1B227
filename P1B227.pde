@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here>
+//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -8,17 +8,27 @@ int sizeX, sizeY;
 boolean init = false;
 PFont freestyle;
 
-MainScreen MainScreen = new MainScreen();
-DailyInput DailyInput = new DailyInput();
-Alarm Alarm = new Alarm();
-SleepTimer SleepTimer = new SleepTimer();
-Logs Logs = new Logs();
-Settings Settings = new Settings();
-Customization Customization = new Customization();
+MainScreen MainScreen;
+DailyInput DailyInput;
+Alarm Alarm;
+SleepTimer SleepTimer;
+Logs Logs;
+Settings Settings;
+Customization Customization;
 Menu Menu;
 
 
 void setup() {
+  size(470, 832);
+  MainScreen = new MainScreen();
+  DailyInput = new DailyInput();
+  Alarm = new Alarm();
+  SleepTimer = new SleepTimer();
+  Logs = new Logs();
+  Settings = new Settings();
+  Customization = new Customization();
+  Menu = new Menu();
+  
   size(470, 832);
   Menu = new Menu();
   sizeX = width; 
@@ -40,7 +50,7 @@ void setup() {
   hatImages[0] = loadImage("TopHat.png");
   hatImages[1] = loadImage("SortingHat.png");
   hatImages[2] = loadImage("WizardHat.png");
-  appState = 0;
+  appState = 1;
   frameRate(60);
 
   starCount = 15;
