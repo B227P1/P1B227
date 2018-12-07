@@ -26,7 +26,7 @@ void setup() {
   starShape = loadShape("star.svg");
   freestyle = loadFont("freestyle.vlw");
   images[0] = loadImage("mainscreen.jpg");
-  images[1] = loadImage("dailyinput.jpg");
+  images[1] = loadImage("daily_input3.jpg");
   images[2] = loadImage("alarm.jpg");
   images[3] = loadImage("sleep_timer.png");
   images[4] = loadImage("logs.png");
@@ -49,7 +49,7 @@ void setup() {
 
 
 void draw() {
-  println(frameRate);
+  //println(frameRate);
 
   switch(appState) {
   case 0:
@@ -85,9 +85,9 @@ void mouseClicked() {
     Customization.setupButtons();
     init = true;
   }
-  //println("-----");
-  //println(mouseX);
-  //println(mouseY);
+  println("-----");
+  println(mouseX);
+  println(mouseY);
 
   // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
   if (Customization.InventoryButton.mouseHovered() && appState == 7) {
