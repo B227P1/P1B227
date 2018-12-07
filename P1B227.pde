@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>//
+//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -147,8 +147,10 @@ void mouseClicked() {
     DailyInput.pageState = 3;
   }
   
+  // --- BUTTONS IN ALARM ---
+  
 
-
+  // --- BUTTONS IN MENU ---
   if (mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
     Menu.Open = !Menu.Open;
   } else if (Menu.Open) {
