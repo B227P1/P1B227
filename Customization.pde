@@ -89,6 +89,7 @@ Customization(){
    ShopButton.render();
  }
 
+  // FUNCTION TO PUT THE HAT ON THE LIZARD
   void equipHat(float xpos, float ypos, float scale, float degree){
    pushMatrix();
    scale(scale);

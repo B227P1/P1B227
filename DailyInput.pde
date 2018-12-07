@@ -1,7 +1,7 @@
 
 class DailyInput {
   int pageState = 0; // 0 is default, 1 is when the popup window appears
-  int productive = 0, energetic = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
+  int productive = 0, energy = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
   boolean save = false; // turns true when everything is filled out, and the data can be saved
 
   void render() {
@@ -9,6 +9,10 @@ class DailyInput {
     image(images[11], width/2, height*0.76, 282, 190);
 
     Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
+    
+    if(productive == 1){
+      
+    
 
     if (pageState == 1) {
       int yescol = 0, nocol = 0;
