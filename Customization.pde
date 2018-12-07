@@ -90,7 +90,7 @@ Customization(){
  }
 
   // FUNCTION TO PUT THE HAT ON THE LIZARD
-  void equipHat(float xpos, float ypos, float scale, float degree){ // scale to scale the image, degree is for rotation
+  void equipHat(float xpos, float ypos, float scale, float degree){
    pushMatrix();
    scale(scale);
    rotate(radians(degree));

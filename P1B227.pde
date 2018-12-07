@@ -140,12 +140,6 @@ void mouseClicked() {
   if(DailyInput.tiredHovered()){ //<>//
     DailyInput.energy= 2;
   }
-  if(DailyInput.wakeTimeHovered()){
-    DailyInput.pageState = 2;
-  }
-  if(DailyInput.bedTimeHovered()){
-    DailyInput.pageState = 3;
-  }
   
 
 

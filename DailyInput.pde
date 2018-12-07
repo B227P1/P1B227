@@ -33,7 +33,7 @@ class DailyInput {
       rect(width*0.255,height*0.715,163,31,20);
     }
     if(pageState == 3){
-      rect(width*0255,height*0.82,163,31,20);
+      rect(width*0.255,height*0.82,163,31,20);
     }
     
 
