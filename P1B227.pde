@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -28,7 +28,7 @@ void setup() {
   Settings = new Settings();
   Customization = new Customization();
   Menu = new Menu();
-  
+
   size(470, 832);
   Menu = new Menu();
   sizeX = width; 
@@ -72,8 +72,8 @@ void draw() {
   case 2:
     DailyInput.render();
     break;
-  case 3: //<>// //<>//
-    Alarm.render(); //<>// //<>//
+  case 3: //<>//
+    Alarm.render(); //<>//
     break;
   case 4:
     SleepTimer.render();
@@ -82,8 +82,8 @@ void draw() {
     Logs.render();
     break;
   case 6:
-    Customization.render(); //<>//
-    break; //<>// //<>//
+    Customization.render();
+    break; //<>//
   }
 
   Menu.render();
@@ -101,8 +101,8 @@ void mouseClicked() {
   println(mouseY);
 
   // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
-  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>// //<>//
-    Customization.pageState = 1; //<>// //<>//
+  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>//
+    Customization.pageState = 1; //<>//
   }
   if (Customization.ShopButton.mouseHovered() && appState == 6) {
     Customization.pageState = 2;
@@ -111,8 +111,8 @@ void mouseClicked() {
   // --- BUTTONS FOR EQUIPPING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[0];
-  } //<>//
-  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
+  }
+  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[1];
   }
 
@@ -124,31 +124,38 @@ void mouseClicked() {
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
     Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
-  } //<>// //<>//
-  
+  } //<>//
+
   // --- BUTTONS IN DAILYINPUT ---
-  
-  if(DailyInput.productiveHovered()){
+
+  if (DailyInput.productiveHovered()) {
     DailyInput.productive = 1;
   }
-  if(DailyInput.unproductiveHovered()){
+  if (DailyInput.unproductiveHovered()) {
     DailyInput.productive = 2;
   }
-  if(DailyInput.energizedHovered()){
+  if (DailyInput.energizedHovered()) {
     DailyInput.energy = 1;
   }
-  if(DailyInput.tiredHovered()){ //<>// //<>//
+  if (DailyInput.tiredHovered()) { //<>//
     DailyInput.energy= 2;
   }
-   if(DailyInput.wakeTimeHovered()){
+  if (DailyInput.wakeTimeHovered()) {
     DailyInput.pageState = 2;
   }
-  if(DailyInput.bedTimeHovered()){
+  if (DailyInput.bedTimeHovered()) {
     DailyInput.pageState = 3;
   }
-  
+
   // --- BUTTONS IN ALARM ---
-  
+  if (Alarm.AmPm.mouseHovered()) {
+    if (Alarm.AmPm.Label.Text == "Pm") {
+      Alarm.AmPm.Label.Text = "Am";
+    } else {
+      Alarm.AmPm.Label.Text = "Pm";
+    }
+  }
+
 
   // --- BUTTONS IN MENU ---
   if (mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
@@ -158,7 +165,7 @@ void mouseClicked() {
       if (Menu.MenuButtons.get(i).mouseHovered()) {
         Menu.Open = false;
         appState = i+1;
-      } //<>//
+      }
     }
   }
 }
@@ -171,7 +178,7 @@ void keyPressed() {
   if (keyCode == RIGHT) {
     appState++;
     appState = appState > 6 ? 6 : appState;
-  } //<>//
+  }
 }
 
 
