@@ -1,7 +1,7 @@
 
 class Alarm {
   float angle;
-  int Hour=12, Minute=60, HourLength, MinuteLength;
+  int Hour=0, Minute=0, HourLength, MinuteLength;
   PVector offset, LilHand, BigHand, Mouse;
   MCLabel Digital;
   MCButton AmPm;
@@ -11,13 +11,15 @@ class Alarm {
     HourLength = width/2-10;
     MinuteLength = width/4;
     offset = new PVector(width/2, height/2-17);
-    LilHand = new PVector(sin(radians(minute()/60*360))*MinuteLength, cos(radians(minute()/60*360))*MinuteLength).add(offset);
-    BigHand = new PVector(sin(radians(hour()/12*360))*HourLength, cos(radians(hour()/12*360))*HourLength).add(offset);
+    LilHand = new PVector(sin(radians(180))*MinuteLength, cos(radians(180))*MinuteLength).add(offset);
+    BigHand = new PVector(sin(radians(180))*HourLength, cos(radians(180))*HourLength).add(offset);
 
     AmPm = new MCButton();
     AmPm.start = new PVector(width-50, 50);
     AmPm.size = new PVector(33, 33);
     AmPm.Label.Text = "Pm" ;
+    AmPm.buttonColor = color(155,155,155,30);
+    AmPm.Label.textColor = color(255);
 
 
     Digital = new MCLabel();
@@ -41,6 +43,7 @@ class Alarm {
         Hour = Hour != 0 ? Hour : 12;
         if (AmPm.Label.Text == "Pm") {
           Hour+=12;
+          Hour = Hour == 24 ? 0 : Hour;
         }
       } else {
         BigHand = new PVector(sin(angle)*HourLength, cos(angle)*HourLength).add(offset);
@@ -60,6 +63,7 @@ class Alarm {
     line(offset.x, offset.y, LilHand.x, LilHand.y);
     line(offset.x, offset.y, BigHand.x, BigHand.y);
     Digital.render();
+    stroke(150);
     AmPm.render();
   }
 }

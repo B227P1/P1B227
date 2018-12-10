@@ -24,7 +24,7 @@ class Menu {
   }
 
   void render() {
-
+      stroke(200);
 
     if (Open) {
       for (int i = 0; i < MenuAmount; i++) {
