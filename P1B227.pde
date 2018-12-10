@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -173,6 +173,15 @@ void mouseClicked() {
       Alarm.OnOff.Label.Text = "Off";
     } else {
       Alarm.OnOff.Label.Text = "On";
+    }
+  }
+  
+    // --- BUTTONS IN SleepTimer ---
+  if (SleepTimer.StartStop.mouseHovered()) {
+    if (SleepTimer.StartStop.Label.Text == "Start") {
+      SleepTimer.StartStop.Label.Text = "Stop";
+    } else {
+      SleepTimer.StartStop.Label.Text = "Start";
     }
   }
 

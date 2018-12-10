@@ -20,6 +20,8 @@ class Alarm {
     AmPm.Label.Text = "Pm" ;
     AmPm.buttonColor = color(155, 155, 155, 30);
     AmPm.Label.textColor = color(255);
+    AmPm.buttonOutlineColor = color(150);
+    AmPm.buttonOutlineSize = 2;
 
     OnOff = new MCButton();
     OnOff.start = new PVector(width-50, height*0.80);
@@ -27,6 +29,8 @@ class Alarm {
     OnOff.Label.Text = "On" ;
     OnOff.buttonColor = color(155, 155, 155, 30);
     OnOff.Label.textColor = color(255);
+    OnOff.buttonOutlineColor = color(150);
+    OnOff.buttonOutlineSize = 2;
 
 
     Digital = new MCLabel();
@@ -67,7 +71,6 @@ class Alarm {
     line(offset.x, offset.y, LilHand.x, LilHand.y);
     line(offset.x, offset.y, BigHand.x, BigHand.y);
     Digital.render();
-    stroke(150);
     AmPm.render();
     OnOff.render();
   }

@@ -1,5 +1,6 @@
 class MCButton { 
   Boolean ColorOnHover = false;
+  int buttonOutlineSize = 1;
   color buttonColor = color(255), buttonAltColor = color(0), buttonOutlineColor = color(150);
   PVector start = new PVector(width/2, height/2), size = new PVector(200, 100);
 
@@ -24,6 +25,7 @@ class MCButton {
     }
     
     stroke(buttonOutlineColor);
+    strokeWeight(buttonOutlineSize);
 
     rect(start.x, start.y, size.x, size.y);
 
