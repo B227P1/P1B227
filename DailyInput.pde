@@ -66,6 +66,12 @@ class DailyInput {
       fill(nocol);
       text("NO", width*0.75, height*0.63);
     }
+    textSize(20);
+    fill(255);
+    textMode(CENTER);
+    textAlign(CENTER);
+    text("Ok",width*0.38,height*0.725);
+    text("Ok",width*0.38,height*0.83);
   }
 
   boolean productiveHovered() {
@@ -139,4 +145,20 @@ class DailyInput {
       return false;
     }
   }
+  
+ boolean wakeOkHovered(){
+   if(mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.7 && mouseY<height*0.74 && pageState == 2 && appState == 2){
+     return true;
+   }else{
+     return false;
+   }
+ }
+ 
+ boolean bedOkHovered(){
+   if(mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.7 && mouseY<height*0.74 && pageState == 2 && appState == 2){
+     return true;
+   }else{
+     return false;
+   }
+ }
 }
