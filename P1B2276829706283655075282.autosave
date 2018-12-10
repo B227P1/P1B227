@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -72,8 +72,8 @@ void draw() {
     break;
   case 2:
     DailyInput.render();
-    break; //<>//
-  case 3: //<>// //<>// //<>//
+    break;
+  case 3: //<>// //<>//
     Alarm.render(); //<>// //<>//
     break;
   case 4:
@@ -82,8 +82,8 @@ void draw() {
   case 5:
     Logs.render();
     break;
-  case 6: //<>//
-    Customization.render(); //<>// //<>//
+  case 6:
+    Customization.render(); //<>//
     break; //<>// //<>//
   }
 
@@ -101,8 +101,8 @@ void mouseClicked() {
   println(mouseX);
   println(mouseY);
 
-  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION --- //<>//
-  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>// //<>// //<>//
+  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
+  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>// //<>//
     Customization.pageState = 1; //<>// //<>//
   }
   if (Customization.ShopButton.mouseHovered() && appState == 6) {
@@ -111,8 +111,8 @@ void mouseClicked() {
 
   // --- BUTTONS FOR EQUIPPING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 1) {
-    hatEquipped = Customization.inventorySlots[0]; //<>//
-  } //<>// //<>//
+    hatEquipped = Customization.inventorySlots[0];
+  } //<>//
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
     hatEquipped = Customization.inventorySlots[1];
   }
@@ -124,7 +124,7 @@ void mouseClicked() {
   }
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
-    Customization.hatsOwned[Customization.inventorySlots[1]] = 1; //<>//
+    Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
   } //<>// //<>//
 
   // --- BUTTONS IN DAILYINPUT ---
@@ -137,7 +137,7 @@ void mouseClicked() {
   }
   if (DailyInput.energizedHovered()) {
     DailyInput.energy = 1;
-  } //<>//
+  }
   if (DailyInput.tiredHovered()) { //<>// //<>//
     DailyInput.energy= 2;
   }
@@ -158,25 +158,8 @@ void mouseClicked() {
   }
   if(DailyInput.bedMinuteHovered()){
     DailyInput.pageState = 5;
-  } //<>//
-  if(DailyInput.wakeOkHovered()){
-    input = "";
-    if(DailyInput.wakeTimeHour<24){
-      if(DailyInput.wakeTimeMinute<60){
-        DailyInput.bedTimeMinute = DailyInput.wakeTimeMinute;
-        if(DailyInput.wakeTimeHour>7){
-          DailyInput.bedTimeHour = DailyInput.wakeTimeHour-8;
-        } else{
-          int i = DailyInput.wakeTimeHour-8;
-          DailyInput.bedTimeHour = 24+i;
-        }
-      }
-    } //<>//
   }
-  if(DailyInput.bedOkHovered()){
-    if(DailyInput.bedTimeHour<24 && DailyInput.bedTimeMinute<60){
-    }}
-
+ //<>//
   // --- BUTTONS IN ALARM ---
   if (Alarm.AmPm.mouseHovered()) {
     if (Alarm.AmPm.Label.Text == "Pm") {
@@ -191,15 +174,6 @@ void mouseClicked() {
       Alarm.OnOff.Label.Text = "Off";
     } else {
       Alarm.OnOff.Label.Text = "On";
-    }
-  }
-  
-    // --- BUTTONS IN SleepTimer ---
-  if (SleepTimer.StartStop.mouseHovered()) {
-    if (SleepTimer.StartStop.Label.Text == "Start") {
-      SleepTimer.StartStop.Label.Text = "Stop";
-    } else {
-      SleepTimer.StartStop.Label.Text = "Start";
     }
   }
 
@@ -227,30 +201,7 @@ void keyPressed() {
     appState = appState > 6 ? 6 : appState;
   }
   // input for wake-up and bedtime in daily input
-  if(appState == 2 && DailyInput.pageState>1 && DailyInput.pageState<6 && input.length()!=2){
-    if(key >= '0' && key <= '9'){
-      input += key;
-      switch(DailyInput.pageState){
-        case 2:
-          DailyInput.wakeTimeHour = int(input);
-          break;
-        case 3:
-          DailyInput.wakeTimeMinute = int(input);
-          break;
-        case 4:
-          DailyInput.bedTimeHour = int(input);
-          break;
-        case 5:
-          DailyInput.bedTimeMinute = int(input);
-          break;
-      }
-      if(input.length() == 2 && DailyInput.pageState%2==0){
-        DailyInput.pageState++;
-        input = "";
-      }
-    }
-  }
-  
+  if(appState == 2 &&
 }
 
 

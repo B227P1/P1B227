@@ -107,13 +107,13 @@ class DailyInput {
       break;
     }
     textSize(wakeHourSize);
-    text(wakeTimeHour+" : ", width*0.25, height*0.725);
+    text(wakeTimeHour+"  :", width*0.25, height*0.725);
     textSize(wakeMinuteSize);
-    text(wakeTimeMinute, width*0.28, height*0.725);
+    text(wakeTimeMinute, width*0.3, height*0.725);
     textSize(bedHourSize);
-    text(bedTimeHour+" : ", width*0.25, height*0.83);
+    text(bedTimeHour+"  :", width*0.25, height*0.83);
     textSize(bedMinuteSize);
-    text(bedTimeMinute, width*0.28, height*0.83);
+    text(bedTimeMinute, width*0.3, height*0.83);
   }
 
   boolean productiveHovered() {
