@@ -38,7 +38,7 @@ void setup() {
   images[0] = loadImage("mainscreen.jpg");
   images[1] = loadImage("daily_input3.jpg");
   images[2] = loadImage("alarm.jpg");
-  images[3] = loadImage("sleep_timer.png");
+  images[3] = loadImage("Sleep_timer.jpg");
   images[4] = loadImage("logs.png");
   images[5] = loadImage("settings.png");
   images[6] = loadImage("starplaceholder.jpg"); // delet this
@@ -153,6 +153,14 @@ void mouseClicked() {
       Alarm.AmPm.Label.Text = "Am";
     } else {
       Alarm.AmPm.Label.Text = "Pm";
+    }
+  }
+
+  if (Alarm.OnOff.mouseHovered()) {
+    if (Alarm.OnOff.Label.Text == "On") {
+      Alarm.OnOff.Label.Text = "Off";
+    } else {
+      Alarm.OnOff.Label.Text = "On";
     }
   }
 

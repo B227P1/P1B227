@@ -1,10 +1,10 @@
-
 class Alarm {
   float angle;
   int Hour=0, Minute=0, HourLength, MinuteLength;
   PVector offset, LilHand, BigHand, Mouse;
   MCLabel Digital;
   MCButton AmPm;
+  MCButton OnOff;
 
 
   Alarm() {
@@ -18,8 +18,15 @@ class Alarm {
     AmPm.start = new PVector(width-50, 50);
     AmPm.size = new PVector(33, 33);
     AmPm.Label.Text = "Pm" ;
-    AmPm.buttonColor = color(155,155,155,30);
+    AmPm.buttonColor = color(155, 155, 155, 30);
     AmPm.Label.textColor = color(255);
+
+    OnOff = new MCButton();
+    OnOff.start = new PVector(width-50, height*0.80);
+    OnOff.size = new PVector(33, 33);
+    OnOff.Label.Text = "On" ;
+    OnOff.buttonColor = color(155, 155, 155, 30);
+    OnOff.Label.textColor = color(255);
 
 
     Digital = new MCLabel();
@@ -50,12 +57,9 @@ class Alarm {
         Minute = (round(degrees(-angle+PI/2+PI)/360*60)+45)%60;
       }
     }
-
-
-
+    
 
     Digital.Text = (Hour<=9?"0":"")+str(Hour)+":"+(Minute<=9?"0":"")+str(Minute);
-
 
 
     stroke(255);
@@ -65,5 +69,6 @@ class Alarm {
     Digital.render();
     stroke(150);
     AmPm.render();
+    OnOff.render();
   }
 }
