@@ -9,9 +9,9 @@ class MainScreen {
     int j = 0;
     int k = 0;
     for (int i = 0; i < starCount; i++) {
-      shape(starShape, j*50+50,k*50+30, 30, 30);
+      shape(starShape, j*60+120,k*50+30, 30, 30);
       j++;
-      if(j>7){
+      if(j>5){
         j = 0;
         k++;
       }
@@ -27,15 +27,7 @@ class MainScreen {
     image(images[8],width*0.23,height*0.835,275,205);
     imageMode(CORNER);
     
-    Customization.equipHat(width*-0.5,height*1.09,0.6,-20);
+    Customization.equipHat(width*-0.5,height*1.09,0.6,-20);    
   }
   
-  
-  boolean isLizardHovered() {
-    if (dist(mouseX, mouseY, width/4, height/6*4.5)<50) { //placeholder values
-      return true;
-    } else {
-      return false;
-    }
-  }
 }

@@ -13,6 +13,8 @@ class Logs {
 
   void render() {
     image(images[4], 0, 0, width, height);
+    image(images[8],width*-0.1,height*0.8,255,185);
+    Customization.equipHat(width*-0.78,height*1.47,0.5,-20);
     imageMode(CENTER);
     switch(inputState) {
     case 0:
@@ -37,7 +39,7 @@ class Logs {
   }
 
   boolean ndHovered() {
-    if (mouseX>width*0.19 && mouseX<width*0.30 && mouseY>height*0.29 && mouseY<height*0.37 && appState ==5) {
+    if (mouseX>width*0.19 && mouseX<width*0.30 && mouseY>height*0.29 && mouseY<height*0.37 && appState == 5) {
       return true;
     } else {
       return false;

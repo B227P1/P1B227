@@ -114,6 +114,7 @@ class DailyInput {
     text(bedTimeHour+"  :", width*0.25, height*0.83);
     textSize(bedMinuteSize);
     text(bedTimeMinute, width*0.3, height*0.83);
+    fill(255);
   }
 
   boolean productiveHovered() {
@@ -189,12 +190,13 @@ class DailyInput {
   }
 
   boolean wakeOkHovered() {
-    if (mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.7 && mouseY<height*0.74 && pageState == 2 || pageState == 3 && appState == 2) {
+    if (mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.7 && mouseY<height*0.74 && appState == 2 && pageState>1 && pageState<4) {
       return true;
     } else {
       return false;
     }
   }
+  
 
   boolean bedOkHovered() {
     if (mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.804 && mouseY<height*0.834 && pageState == 4 || pageState == 5 && appState == 2) {

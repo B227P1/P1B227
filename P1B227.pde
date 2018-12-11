@@ -3,18 +3,20 @@ int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
 PImage[] hatImages = new PImage[3];
+PImage[] tutorialImgs = new PImage[10];
+String[] advices = new String[6];
 PShape starShape;
 int sizeX, sizeY;
 boolean init = false;
 PFont freestyle;
 String input = "";
+int tutorialState;
 
 MainScreen MainScreen;
 DailyInput DailyInput;
 Alarm Alarm;
 SleepTimer SleepTimer;
 Logs Logs;
-Settings Settings;
 Customization Customization;
 Menu Menu;
 
@@ -26,7 +28,6 @@ void setup() {
   Alarm = new Alarm();
   SleepTimer = new SleepTimer();
   Logs = new Logs();
-  Settings = new Settings();
   Customization = new Customization();
   Menu = new Menu();
 
@@ -41,8 +42,7 @@ void setup() {
   images[2] = loadImage("alarm.jpg");
   images[3] = loadImage("Sleep_timer.jpg");
   images[4] = loadImage("logs.png");
-  images[5] = loadImage("settings.png");
-  images[6] = loadImage("starplaceholder.jpg"); // delet this
+  images[5] = loadImage("bubble.png");
   images[7] = loadImage("customization.jpg");
   images[8] = loadImage("lizard3.png");
   images[9] = loadImage("lizard1.png");
@@ -51,20 +51,30 @@ void setup() {
   hatImages[0] = loadImage("TopHat.png");
   hatImages[1] = loadImage("SortingHat.png");
   hatImages[2] = loadImage("WizardHat.png");
+  tutorialImgs[0] = loadImage("mainscreen1.png");
+  tutorialImgs[1] = loadImage("mainscreen2.png");
+  tutorialImgs[2] = loadImage("mainscreen3.png");
+  tutorialImgs[3] = loadImage("mainscreen4.png");
+  advices[0] = "Look at all these stars!"+ENTER+"I'm so proud of you!";
+  advices[1] = "Oooh, a new hat for me?!"+ENTER+"Thank you hooman!";
+  advices[3] = "You should get 7-8 hours"+ENTER+"of sleep every day.";
+  advices[2] = "Oooh. Fancy!";
+  advices[4] = "Higher sleep quantity"+ENTER+"can lead to better"+ENTER+"academic performance!";
+  advices[5] = "Hmm I really want"+ENTER+"a new hat.";
   appState = 1;
   frameRate(60);
 
-  starCount = 15;
+  starCount = 13;
   hatEquipped = 0;
   textFont(freestyle);
 }
 
 
 void draw() {
-  //println(frameRate);
 
   switch(appState) {
   case 0:
+    tutorial();
     break;
   case 1:
     MainScreen.render();
@@ -72,9 +82,9 @@ void draw() {
     break;
   case 2:
     DailyInput.render();
-    break; //<>//
-  case 3: //<>// //<>// //<>//
-    Alarm.render(); //<>// //<>//
+    break;
+  case 3: 
+    Alarm.render();
     break;
   case 4:
     SleepTimer.render();
@@ -93,17 +103,21 @@ void draw() {
 
 
 void mouseClicked() {
+  loop();
   if (init == false) {
     Customization.setupButtons();
     init = true;
+  }
+  if(appState == 0){
+    tutorialState++;
   }
   println("-----");
   println(mouseX);
   println(mouseY);
 
-  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION --- //<>//
-  if (Customization.InventoryButton.mouseHovered() && appState == 6) { //<>// //<>// //<>//
-    Customization.pageState = 1; //<>// //<>//
+  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
+  if (Customization.InventoryButton.mouseHovered() && appState == 6) { 
+    Customization.pageState = 1; 
   }
   if (Customization.ShopButton.mouseHovered() && appState == 6) {
     Customization.pageState = 2;
@@ -111,21 +125,25 @@ void mouseClicked() {
 
   // --- BUTTONS FOR EQUIPPING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 1) {
-    hatEquipped = Customization.inventorySlots[0]; //<>//
-  } //<>// //<>//
-  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) { //<>//
+    hatEquipped = Customization.inventorySlots[0];
+    showAdvice(width*0.655,height*0.172,320,200,2);
+  } 
+  if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[1];
+    showAdvice(width*0.655,height*0.172,320,200,2);
   }
 
   // --- BUTTONS FOR BUYING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[0]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[0]];
     Customization.hatsOwned[Customization.inventorySlots[0]] = 1;
+    showAdvice(width*0.655,height*0.172,320,200,1);
   }
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
-    Customization.hatsOwned[Customization.inventorySlots[1]] = 1; //<>//
-  } //<>// //<>//
+    Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
+    showAdvice(width*0.655,height*0.172,320,200,1);
+  } 
 
   // --- BUTTONS IN DAILYINPUT ---
 
@@ -137,8 +155,8 @@ void mouseClicked() {
   }
   if (DailyInput.energizedHovered()) {
     DailyInput.energy = 1;
-  } //<>//
-  if (DailyInput.tiredHovered()) { //<>// //<>//
+  }
+  if (DailyInput.tiredHovered()) { //<>//
     DailyInput.energy= 2;
   }
   if (DailyInput.wakeTimeHovered()) {
@@ -152,18 +170,20 @@ void mouseClicked() {
   }
   if(DailyInput.wakeMinuteHovered()){
     DailyInput.pageState = 3;
+    input = "";
   }
   if(DailyInput.bedHourHovered()){
     DailyInput.pageState = 4;
   }
   if(DailyInput.bedMinuteHovered()){
     DailyInput.pageState = 5;
-  } //<>//
+  }
   if(DailyInput.wakeOkHovered()){
     input = "";
     if(DailyInput.wakeTimeHour<24){
       if(DailyInput.wakeTimeMinute<60){
         DailyInput.bedTimeMinute = DailyInput.wakeTimeMinute;
+        DailyInput.pageState = 1;
         if(DailyInput.wakeTimeHour>7){
           DailyInput.bedTimeHour = DailyInput.wakeTimeHour-8;
         } else{
@@ -171,11 +191,19 @@ void mouseClicked() {
           DailyInput.bedTimeHour = 24+i;
         }
       }
-    } //<>//
+    }
   }
+  
   if(DailyInput.bedOkHovered()){
     if(DailyInput.bedTimeHour<24 && DailyInput.bedTimeMinute<60){
     }}
+  if(DailyInput.yesHovered()){
+    //set alarm
+  }
+  if(DailyInput.noHovered()){
+    DailyInput.pageState = 0;
+  }
+  
 
   // --- BUTTONS IN ALARM ---
   if (Alarm.AmPm.mouseHovered()) {
@@ -202,11 +230,42 @@ void mouseClicked() {
       SleepTimer.StartStop.Label.Text = "Start";
     }
   }
-
+  
+  // --- BUTTONS IN LOGS ---
+  if(appState == 5){
+    if(Logs.inputState == 1 || Logs.inputState == 2){
+      Logs.inputState = 0;
+    }
+  }
+  if (Logs.thHovered()){
+    Logs.inputState = 1;
+  }
+  if(Logs.ndHovered()){
+    Logs.inputState= 2;
+  }
+  if(wizardHovered()){
+    switch(appState){
+      case 1:
+       showAdvice(width*0.496,height*0.583,320,200,round(random(2.5,5)));
+       break;
+      case 2:
+        showAdvice(width*0.543,height*0.637,320,200,round(random(2.5,5)));
+        break;
+      case 5:
+        showAdvice(width*0.585,height*0.7,320,200,round(random(2.5,5)));
+        break;
+      case 6:
+        showAdvice(width*0.655,height*0.172,320,200,round(random(2.5,5)));
+        break;
+    }
+  }
+  
+   //<>//
+  
 
   // --- BUTTONS IN MENU ---
   if (mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
-    Menu.Open = !Menu.Open; //<>//
+    Menu.Open = !Menu.Open;
   } else if (Menu.Open) {
     for (int i = 0; i < Menu.MenuAmount; i++) {
       if (Menu.MenuButtons.get(i).mouseHovered()) {
@@ -260,4 +319,70 @@ void saveData() {
 
 //--LOAD FUNCTION--
 void loadData() {
+}
+
+void tutorial(){
+  switch(tutorialState){
+    case 0:
+    image(tutorialImgs[0],0,0,width,height);
+    break;
+    case 1:
+    image(tutorialImgs[1],0,0,width,height);
+    break;
+    case 2:
+    image(tutorialImgs[2],0,0,width,height);
+    break;
+    case 3:
+    image(tutorialImgs[3],0,0,width,height);
+    break;
+    default:
+    appState++;
+    
+  }
+}
+
+boolean wizardHovered(){
+  switch(appState){
+    case 1:
+      if (dist(mouseX, mouseY, width*0.389, height*0.817)<80) { 
+      return true;
+    } else {
+      return false;
+    }
+    case 2:
+      if (dist(mouseX, mouseY, width*0.64, height*0.855)<80) { 
+      return true;
+    } else {
+      return false;
+    }
+    case 5:
+      if (dist(mouseX, mouseY, width*0.308, height*0.89)<80) { 
+      return true;
+    } else {
+      return false;
+    }
+    case 6:
+      if (dist(mouseX, mouseY, width*0.674, height*0.423)<80) { 
+      return true;
+    } else {
+      return false;
+    }
+    default:
+    return false;
+  }
+}
+  
+
+void showAdvice(float xpos, float ypos, float wide, float high, int advNum){
+  //int startT = millis(), stopT = millis()+10000;
+  //while(startT<stopT){
+  imageMode(CENTER);
+  image(images[5],xpos,ypos,wide,high);
+  fill(0);
+  textAlign(CENTER);
+  textSize(45);
+  text(advices[advNum],xpos,ypos-50);
+  imageMode(CORNER);
+  noLoop();
+  //}
 }
