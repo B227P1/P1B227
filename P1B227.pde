@@ -1,4 +1,4 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+//Main file subject to change <mikkel was here> //<>//
 int appState; // determines which state program is in
 int starCount, hatEquipped;
 PImage[] images = new PImage[20]; // array for the images used
@@ -11,6 +11,8 @@ boolean init = false;
 PFont freestyle;
 String input = "";
 int tutorialState;
+float SleepingForTime;
+long startTime, stopTime, currentSleep;
 
 MainScreen MainScreen;
 DailyInput DailyInput;
@@ -222,13 +224,23 @@ void mouseClicked() {
     }
   }
   
-    // --- BUTTONS IN SleepTimer ---
+  // --- BUTTONS IN SleepTimer ---
   if (SleepTimer.StartStop.mouseHovered()) {
     if (SleepTimer.StartStop.Label.Text == "Start") {
       SleepTimer.StartStop.Label.Text = "Stop";
+      if (SleepTimer.SleepingFor.Text == "N/A") {
+        startTime = System.currentTimeMillis();
+      } else {
+        startTime = System.currentTimeMillis()-currentSleep;
+      }
     } else {
       SleepTimer.StartStop.Label.Text = "Start";
     }
+  }
+
+  if (SleepTimer.Reset.mouseHovered()) {
+    SleepTimer.SleepingFor.Text = "N/A";
+    SleepTimer.StartStop.Label.Text = "Start";
   }
   
   // --- BUTTONS IN LOGS ---
@@ -277,6 +289,14 @@ void mouseClicked() {
 }
 
 void keyPressed() {
+  
+    if (keyCode == UP) {
+    startTime -= 60000;
+  }
+    if (keyCode == DOWN) {
+    startTime -= 3600000;
+  }
+  
   if (keyCode == LEFT) {
     appState--;
     appState = appState < 1 ? 1 : appState;
