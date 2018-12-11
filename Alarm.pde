@@ -1,6 +1,6 @@
 class Alarm {
   float angle;
-  int Hour=0, Minute=0, HourLength, MinuteLength;
+  int  HourLength, MinuteLength;
   PVector offset, LilHand, BigHand, Mouse;
   MCLabel Digital;
   MCButton AmPm;
@@ -50,20 +50,20 @@ class Alarm {
     if (mousePressed && mouseButton  == LEFT && offset.dist(Mouse) < width/2 ) {
       if (LilHand.dist(Mouse)<BigHand.dist(Mouse)) {
         LilHand = new PVector(sin(angle)*MinuteLength, cos(angle)*MinuteLength).add(offset);
-        Hour = (round(degrees(-angle+PI/2+PI)/360*12)+9)%12;
-        Hour = Hour != 0 ? Hour : 12;
+        alarmHour = (round(degrees(-angle+PI/2+PI)/360*12)+9)%12;
+        alarmHour = alarmHour != 0 ? alarmHour : 12;
         if (AmPm.Label.Text == "Pm") {
-          Hour+=12;
-          Hour = Hour == 24 ? 0 : Hour;
+          alarmHour+=12;
+          alarmHour = alarmHour == 24 ? 0 : alarmHour;
         }
       } else {
         BigHand = new PVector(sin(angle)*HourLength, cos(angle)*HourLength).add(offset);
-        Minute = (round(degrees(-angle+PI/2+PI)/360*60)+45)%60;
+        alarmMinute = (round(degrees(-angle+PI/2+PI)/360*60)+45)%60;
       }
     }
     
 
-    Digital.Text = (Hour<=9?"0":"")+str(Hour)+":"+(Minute<=9?"0":"")+str(Minute);
+    Digital.Text = (alarmHour<=9?"0":"")+str(alarmHour)+":"+(alarmMinute<=9?"0":"")+str(alarmMinute);
 
 
     stroke(255);

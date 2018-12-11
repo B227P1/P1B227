@@ -12,7 +12,9 @@ PFont freestyle;
 String input = "";
 int tutorialState;
 float SleepingForTime;
-long startTime, stopTime, currentSleep;
+long startTime, stopTime, currentSleep, AlarmInSec;
+double dailySeconds;
+int alarmHour, alarmMinute;
 
 MainScreen MainScreen;
 DailyInput DailyInput;
@@ -73,6 +75,8 @@ void setup() {
 
 
 void draw() {
+  dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d;
+  AlarmInSec = alarmHour*3600+alarmMinute*60 - (long)dailySeconds > 0 ? alarmHour*3600+alarmMinute*60 - (long)dailySeconds : alarmHour*3600+alarmMinute*60 - (long)dailySeconds + 86400;
 
   switch(appState) {
   case 0:

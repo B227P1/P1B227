@@ -45,8 +45,14 @@ class SleepTimer {
       currentSleep = System.currentTimeMillis()-startTime;
       SleepingFor.Text = (int(currentSleep/1000/60/60) < 10 ? "0" : "")+str(int(currentSleep/1000/60/60))+":"+(int(currentSleep/1000/60)%60 < 10 ? "0" : "")+str(int(currentSleep/1000/60)%60)+":"+(int(currentSleep/1000)%60 < 10 ? "0" : "")+str(int(currentSleep/1000)%60);
     }
+    //str(AlarmInSec);
+    if (Alarm.OnOff.Label.Text == "On") {
+          TimeTilAlarm.Text = (int(AlarmInSec/60/60) < 10 ? "0" : "")+str(int(AlarmInSec/60/60))+":"+(int(AlarmInSec/60)%60 < 10 ? "0" : "")+str(int(AlarmInSec/60)%60)+":"+(int(AlarmInSec%60) < 10 ? "0" : "")+str(int(AlarmInSec%60));
+    } else {
+          TimeTilAlarm.Text = "No alarm set";
+    }
+    
 
-    println(mouseX,mouseY);
 
     Reset.render();
     StartStop.render();
