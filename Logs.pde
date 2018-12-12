@@ -27,6 +27,10 @@ class Logs {
       break;
     }
     imageMode(CORNER);
+    textAlign(CENTER);
+    textSize(65);
+    fill(200);
+    text("November",width/2,width*0.35);
   }
 
 
