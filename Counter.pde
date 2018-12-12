@@ -32,10 +32,5 @@ class Counter {
   // returns the hours passed
   long getHour() {
     return timeSum/1000/60/60%24;
-  }
-
-  // saves the time | UNFINISHED
-  void saveTime() {
-    //sleepTimes = append(sleepTimes,timeSum); // fix this
-  } //<>// //<>// //<>// //<>//
+  } //<>//
 }

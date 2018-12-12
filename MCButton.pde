@@ -23,7 +23,7 @@ class MCButton {
     } else {
       fill(buttonAltColor);
     }
-    
+
     stroke(buttonOutlineColor);
     strokeWeight(buttonOutlineSize);
 

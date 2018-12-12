@@ -77,7 +77,7 @@ class SleepTimer {
     if (PopUp) {
       stroke(0);
       strokeWeight(2);
-      fill(50,50,150);
+      fill(50, 50, 150);
       rectMode(CENTER);
       rect(width/2, height/2, width*0.75, height/2);
       PopUpText.render();

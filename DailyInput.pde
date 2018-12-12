@@ -196,7 +196,7 @@ class DailyInput {
       return false;
     }
   }
-  
+
 
   boolean bedOkHovered() {
     if (mouseX>width*0.362 && mouseX<width*0.426 && mouseY>height*0.804 && mouseY<height*0.834 && pageState == 4 || pageState == 5 && appState == 2) {

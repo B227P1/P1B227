@@ -61,7 +61,7 @@ class Alarm {
         alarmMinute = (round(degrees(-angle+PI/2+PI)/360*60)+45)%60;
       }
     }
-    
+
 
     Digital.Text = (alarmHour<=9?"0":"")+str(alarmHour)+":"+(alarmMinute<=9?"0":"")+str(alarmMinute);
 
