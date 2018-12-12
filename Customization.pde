@@ -1,7 +1,7 @@
 
 class Customization{
 int pageState = 1;
-byte[] hatsOwned = new byte[3];
+int[] hatsOwned = new int[3];
 byte[] inventorySlots = new byte[2];
 byte[] hatPrices = new byte[3];
 
@@ -10,9 +10,6 @@ byte[] hatPrices = new byte[3];
   MCButton ShopButton = new MCButton();
   
 Customization(){
-  hatsOwned[0] = 1;
-  hatsOwned[1] = 0;
-  hatsOwned[2] = 0;
   hatPrices[0] = 5;
   hatPrices[1] = 8;
   hatPrices[2] = 10;
@@ -25,6 +22,7 @@ Customization(){
    ShopButton.start = new PVector(sizeX/4*3,sizeY/6*4);
    ShopButton.size = new PVector(sizeX/4,25);
    ShopButton.Label.Text = "Shop";
+   
  }
  
  void render(){

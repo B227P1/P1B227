@@ -1,10 +1,8 @@
 // Class for everything on the main screen
 
 class MainScreen {
-  //int starCount; might delete
-  String adviceText;  
-
-
+  boolean enter = true;
+  
   void setStarPositions() {
     int j = 0;
     int k = 0;
@@ -27,7 +25,13 @@ class MainScreen {
     image(images[8],width*0.23,height*0.835,275,205);
     imageMode(CORNER);
     
-    Customization.equipHat(width*-0.5,height*1.09,0.6,-20);    
+    Customization.equipHat(width*-0.5,height*1.09,0.6,-20);
+    if(enter && starCount>9){
+      showAdvice(width*0.496,height*0.583,320,200,0,45);
+    }
+    if(enter){
+      enter = false;
+    }
   }
   
 }
