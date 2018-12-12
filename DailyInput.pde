@@ -115,6 +115,8 @@ class DailyInput {
     textSize(bedMinuteSize);
     text(bedTimeMinute, width*0.3, height*0.83);
     fill(255);
+    textSize(33);
+    text("Max hour value: 23, max minute value: 59",width*0.45,height*0.65);
   }
 
   boolean productiveHovered() {
