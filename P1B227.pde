@@ -337,14 +337,14 @@ void keyPressed() {
     startTime -= 3600000;
   }
 
-  if (keyCode == LEFT) {
-    appState--;
-    appState = appState < 1 ? 1 : appState;
-  }
-  if (keyCode == RIGHT) {
-    appState++;
-    appState = appState > 6 ? 6 : appState;
-  }
+  //if (keyCode == LEFT) {
+  //  appState--;
+  //  appState = appState < 1 ? 1 : appState;
+  //}
+  //if (keyCode == RIGHT) {
+  //  appState++;
+  //  appState = appState > 6 ? 6 : appState;
+ // }
   // input for wake-up and bedtime in daily input
   if (appState == 2 && DailyInput.pageState>1 && DailyInput.pageState<6 && input.length()!=2) {
     if (key >= '0' && key <= '9') {
