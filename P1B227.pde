@@ -37,7 +37,6 @@ void setup() {
   data = loadTable("data.csv", "header");
   TableRow row1 = data.getRow(0);
 
-  Menu = new Menu();
   sizeX = width; 
   sizeY = height;
   starShape = loadShape("star.svg");
@@ -109,10 +108,10 @@ void draw() {
     break;
   case 6: 
     Customization.render(); 
-    break; //<>//
+    break;
   } //<>//
  //<>//
-  if (appState != 0) {
+  if (appState != 0) { //<>//
     Menu.render();
   }
 }
@@ -179,8 +178,8 @@ void mouseClicked() {
     DailyInput.energy= 2;
   }
   if (DailyInput.wakeTimeHovered()) {
-    DailyInput.pageState = 2; //<>//
-  }
+    DailyInput.pageState = 2;
+  } //<>//
   if (DailyInput.bedTimeHovered()) {
     DailyInput.pageState = 4;
   }
@@ -293,8 +292,8 @@ void mouseClicked() {
     switch(appState) {
     case 1:
       showAdvice(width*0.496, height*0.583, 320, 200, round(random(2.5, 5)), 45);
-      break; //<>//
-    case 2:
+      break;
+    case 2: //<>//
       showAdvice(width*0.543, height*0.637, 320, 200, round(random(2.5, 5)), 45);
       break;
     case 5:
