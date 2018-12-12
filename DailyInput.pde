@@ -70,8 +70,8 @@ class DailyInput {
     textSize(20);
     fill(255);
     textAlign(CENTER);
-    text("Ok", width*0.38, height*0.725);
-    text("Ok", width*0.38, height*0.83);
+    text("OK", width*0.38, height*0.725);
+    text("OK", width*0.38, height*0.83);
 
     // for the wake-up / bedtime input
     switch(pageState) {
