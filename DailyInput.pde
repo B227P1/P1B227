@@ -1,4 +1,3 @@
-
 class DailyInput {
   int pageState = 0; // 0 is default, 1 is when the popup window appears, 2 is wakeup minute input is active, 3 when hour active, 4 is bedtime minute input is active, 5 bedtime hour active
   int productive = 0, energy = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired

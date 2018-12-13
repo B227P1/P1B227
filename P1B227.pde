@@ -1,20 +1,14 @@
 //Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-int appState; // determines which state program is in
-int starCount, hatEquipped;
-PImage[] images = new PImage[20]; // array for the images used
-PImage[] hatImages = new PImage[3];
-PImage[] tutorialImgs = new PImage[10];
-String[] advices = new String[7];
-PShape starShape;
-int sizeX, sizeY;
 boolean init = false, cheat = true; //cheat allows the cheats to be used (for testing/evaluating)
-PFont freestyle;
+int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; // appState determines which state program is in
 String input = "";
-int tutorialState;
 float SleepingForTime;
 long startTime, stopTime, currentSleep, AlarmInSec;
 double dailySeconds;
-int alarmHour, alarmMinute;
+PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; // images array for the images used
+String[] advices = new String[7];
+PShape starShape;
+Table data;
 
 MainScreen MainScreen;
 DailyInput DailyInput;
@@ -23,10 +17,12 @@ SleepTimer SleepTimer;
 Logs Logs;
 Customization Customization;
 Menu Menu;
-Table data;
 
 void setup() {
   size(470, 832);
+  frameRate(60);
+  textFont(loadFont("freestyle.vlw"));
+
   MainScreen = new MainScreen();
   DailyInput = new DailyInput();
   Alarm = new Alarm();
@@ -34,13 +30,15 @@ void setup() {
   Logs = new Logs();
   Customization = new Customization();
   Menu = new Menu();
+
   data = loadTable("data.csv", "header");
   TableRow row1 = data.getRow(0);
 
   sizeX = width; 
   sizeY = height;
+
   starShape = loadShape("star.svg");
-  freestyle = loadFont("freestyle.vlw");
+
   images[0] = loadImage("mainscreen.jpg");
   images[1] = loadImage("daily_input3.jpg");
   images[2] = loadImage("alarm.jpg");
@@ -52,9 +50,11 @@ void setup() {
   images[9] = loadImage("lizard1.png");
   images[10] = loadImage("lizard2.png");
   images[11] = loadImage("lizard3flipped.png");
+
   hatImages[0] = loadImage("TopHat.png");
   hatImages[1] = loadImage("SortingHat.png");
   hatImages[2] = loadImage("WizardHat.png");
+
   tutorialImgs[0] = loadImage("mainscreen1.png");
   tutorialImgs[1] = loadImage("mainscreen2.png");
   tutorialImgs[2] = loadImage("mainscreen3.png");
@@ -64,6 +64,7 @@ void setup() {
   tutorialImgs[6] = loadImage("sleeptimer2.png");
   tutorialImgs[7] = loadImage("sleeptimer3.png");
   tutorialImgs[8] = loadImage("customization.png");
+
   advices[0] = "Look at all these stars!"+ENTER+"I'm so proud of you!";
   advices[1] = "Oooh, a new hat for me?!"+ENTER+"Thank you hooman!";
   advices[3] = "You should get 7-8 hours"+ENTER+"of sleep every day.";
@@ -71,20 +72,22 @@ void setup() {
   advices[4] = "Higher sleep quantity"+ENTER+"can lead to better"+ENTER+"academic performance!";
   advices[5] = "Hmm I really want"+ENTER+"a new hat.";
   advices[6] = "Based on your sleep time,"+ENTER+"I predict that you will"+ENTER+"feel productive and energized!";
+
   appState = row1.getInt("appState");
-  frameRate(60);
 
   Customization.hatsOwned[0] = row1.getInt("hat0Owned");
   Customization.hatsOwned[1] = row1.getInt("hat1Owned");
   Customization.hatsOwned[2] = row1.getInt("hat2Owned");
+
   starCount = row1.getInt("starCount");
+
   hatEquipped = row1.getInt("hatEquipped");
-  textFont(freestyle);
 }
 
 void draw() {
   dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d;
   AlarmInSec = alarmHour*3600+alarmMinute*60 - (long)dailySeconds > 0 ? alarmHour*3600+alarmMinute*60 - (long)dailySeconds : alarmHour*3600+alarmMinute*60 - (long)dailySeconds + 86400;
+  println(appState);
 
   switch(appState) {
   case 0:
@@ -109,9 +112,9 @@ void draw() {
   case 6: 
     Customization.render(); 
     break;
-  } //<>//
- //<>//
-  if (appState != 0) { //<>//
+  }
+
+  if (appState != 0) {
     Menu.render();
   }
 }
@@ -174,12 +177,12 @@ void mouseClicked() {
   if (DailyInput.energizedHovered()) {
     DailyInput.energy = 1;
   }
-  if (DailyInput.tiredHovered()) { //<>//
+  if (DailyInput.tiredHovered()) {
     DailyInput.energy= 2;
   }
   if (DailyInput.wakeTimeHovered()) {
     DailyInput.pageState = 2;
-  } //<>//
+  }
   if (DailyInput.bedTimeHovered()) {
     DailyInput.pageState = 4;
   }
@@ -227,53 +230,57 @@ void mouseClicked() {
   }
 
   // --- BUTTONS IN ALARM ---
-  if (Alarm.AmPm.mouseHovered()) {
-    if (Alarm.AmPm.Label.Text == "Pm") {
-      Alarm.AmPm.Label.Text = "Am";
-    } else {
-      Alarm.AmPm.Label.Text = "Pm";
+  if (appState == 3) {
+    if (Alarm.AmPm.mouseHovered()) {
+      if (Alarm.AmPm.Label.Text == "Pm") {
+        Alarm.AmPm.Label.Text = "Am";
+      } else {
+        Alarm.AmPm.Label.Text = "Pm";
+      }
     }
-  }
 
-  if (Alarm.OnOff.mouseHovered()) {
-    if (Alarm.OnOff.Label.Text == "On") {
-      Alarm.OnOff.Label.Text = "Off";
-    } else {
-      Alarm.OnOff.Label.Text = "On";
+    if (Alarm.OnOff.mouseHovered()) {
+      if (Alarm.OnOff.Label.Text == "On") {
+        Alarm.OnOff.Label.Text = "Off";
+      } else {
+        Alarm.OnOff.Label.Text = "On";
+      }
     }
   }
 
   // --- BUTTONS IN SleepTimer ---
-  if (SleepTimer.StartStop.mouseHovered()) {
-    if (SleepTimer.StartStop.Label.Text == "Start") {
-      SleepTimer.StartStop.Label.Text = "Stop";
-      if (SleepTimer.SleepingFor.Text == "N/A") {
-        startTime = System.currentTimeMillis();
+  if (appState == 4) {
+    if (SleepTimer.StartStop.mouseHovered()) {
+      if (SleepTimer.StartStop.Label.Text == "Start") {
+        SleepTimer.StartStop.Label.Text = "Stop";
+        if (SleepTimer.SleepingFor.Text == "N/A") {
+          startTime = System.currentTimeMillis();
+        } else {
+          startTime = System.currentTimeMillis()-currentSleep;
+        }
       } else {
-        startTime = System.currentTimeMillis()-currentSleep;
+        SleepTimer.StartStop.Label.Text = "Start";
       }
-    } else {
+    }
+
+    if (SleepTimer.Reset.mouseHovered()) {
+      SleepTimer.SleepingFor.Text = "N/A";
       SleepTimer.StartStop.Label.Text = "Start";
-    }
-  }
-
-  if (SleepTimer.Reset.mouseHovered()) {
-    SleepTimer.SleepingFor.Text = "N/A";
-    SleepTimer.StartStop.Label.Text = "Start";
-    if (currentSleep > 25200000) {
-      starCount++;
-      SleepTimer.PopUp = true;
-      SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"7 hours you get 1 star!";
-      if (currentSleep > 28800000) {
+      if (currentSleep > 25200000) {
         starCount++;
-        SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"8 hours you get 2 stars!";
+        SleepTimer.PopUp = true;
+        SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"7 hours you get 1 star!";
+        if (currentSleep > 28800000) {
+          starCount++;
+          SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"8 hours you get 2 stars!";
+        }
       }
+      currentSleep = 0;
     }
-    currentSleep = 0;
-  }
 
-  if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
-    SleepTimer.PopUp = false;
+    if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
+      SleepTimer.PopUp = false;
+    }
   }
 
   // --- BUTTONS IN LOGS ---
@@ -293,7 +300,7 @@ void mouseClicked() {
     case 1:
       showAdvice(width*0.496, height*0.583, 320, 200, round(random(2.5, 5)), 45);
       break;
-    case 2: //<>//
+    case 2:
       showAdvice(width*0.543, height*0.637, 320, 200, round(random(2.5, 5)), 45);
       break;
     case 5:
@@ -343,7 +350,7 @@ void keyPressed() {
   //if (keyCode == RIGHT) {
   //  appState++;
   //  appState = appState > 6 ? 6 : appState;
- // }
+  // }
   // input for wake-up and bedtime in daily input
   if (appState == 2 && DailyInput.pageState>1 && DailyInput.pageState<6 && input.length()!=2) {
     if (key >= '0' && key <= '9') {

@@ -1,5 +1,4 @@
 // Class for everything on the main screen
-
 class MainScreen {
   boolean enter = true;
 

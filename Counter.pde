@@ -1,5 +1,4 @@
 // Counter class, to time the amount of sleep the user gets. //<>//
-
 class Counter {
   long startTime, timeSum;
   boolean running = false;
