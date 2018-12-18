@@ -1,4 +1,3 @@
-
 class Customization {
   int pageState = 1;
   int[] hatsOwned = new int[3];
