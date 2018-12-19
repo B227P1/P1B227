@@ -1,11 +1,11 @@
 // Welcome dear examinors! We hope you enjoy our program, and give us a 12 LUL //<>//
 boolean init = false, cheat = true; //cheat allows the cheats to be used (for testing/evaluating)
-int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; // appState determines which state program is in
+int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; /*alarmHour is used to store which Hour in the day the user is currently on, alarmMinute is used to store which Minute in the day the user is currently on,
+sizeX is used to store width, sizeY is used to store height, tutorialState determines which screen the program is on during the tutorial, starCount is the amout of star the user has, hatEquipped is the current hat the user has, appState determines which screen the program is on*/
 String input = ""; // this is needed for the input in daily input
-float SleepingForTime;
-long startTime, stopTime, currentSleep, AlarmInSec; // MARTIN WTF IS DIS
-double dailySeconds;
-PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; // images array for the images used
+long startTime, currentSleep, AlarmInSec; //startTime is used to save at which point in time the user started the timer since jan 1 1970, currentSleep is used to store how much the user currently has slept in miliseconds, AlarmInSec is used to store how long til the alarm in seconds
+double dailySeconds; //number of seconds transpired so far in a day
+PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; //tutorialImgs array for the images used for tutoral, hatImages array used to store images of the hats the wizard lizard can wear, images array used to store miscellaneous images used in the program and the main screens
 String[] advices = new String[7]; // stores all the possible advices that the Wizard Lizard can give
 PShape starShape;
 Table data; // the table that holds the savable/loadable data
@@ -89,7 +89,10 @@ void setup() {
 }
 
 void draw() {
-  dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d; // how dis work MARTIN MAAARTIIIN
+  //calculates the seconds transpired in a day
+  dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d;
+  
+  //calculates the seconds til alarm
   AlarmInSec = alarmHour*3600+alarmMinute*60 - (long)dailySeconds > 0 ? alarmHour*3600+alarmMinute*60 - (long)dailySeconds : alarmHour*3600+alarmMinute*60 - (long)dailySeconds + 86400;
 
   // the switch responsible for rendering the right page and the right elements on the screen.
@@ -106,9 +109,9 @@ void draw() {
     break;
   case 3: 
     Alarm.render();
-    break;
-  case 4:
-    SleepTimer.render();
+    break; //<>//
+  case 4: //<>//
+    SleepTimer.render(); //<>//
     break; //<>//
   case 5: //<>//
     Logs.render(); //<>//
@@ -172,14 +175,14 @@ void mouseClicked() {
   } 
 
   // --- BUTTONS IN DAILYINPUT ---
-
+ //<>//
   if (DailyInput.saveHovered()) {
     appState = 1; //<>//
   }
-  if (DailyInput.productiveHovered()) {
+  if (DailyInput.productiveHovered()) { //<>//
     DailyInput.productive = 1;
   }
-  if (DailyInput.unproductiveHovered()) { //<>//
+  if (DailyInput.unproductiveHovered()) {
     DailyInput.productive = 2;
   }
   if (DailyInput.energizedHovered()) {
@@ -240,7 +243,8 @@ void mouseClicked() {
     DailyInput.pageState = 0;
   }
 
-  // --- BUTTONS IN ALARM --- MARTIN THIS IS YOUR RESORT
+  // --- BUTTONS IN ALARM --- 
+  //if the page is being renderd it checks if the alarm Pm/Am button is hoverd and if so changes it from Pm to Am or opposite
   if (appState == 3) {
     if (Alarm.AmPm.mouseHovered()) {
       if (Alarm.AmPm.Label.Text == "Pm") {
@@ -250,6 +254,7 @@ void mouseClicked() {
       }
     }
 
+    //it checks if the alarm on/off button is hoverd and if so changes it from On to Off or opposite
     if (Alarm.OnOff.mouseHovered()) {
       if (Alarm.OnOff.Label.Text == "On") {
         Alarm.OnOff.Label.Text = "Off";
@@ -288,7 +293,7 @@ void mouseClicked() {
       }
       currentSleep = 0;
     }
-
+ //<>//
     if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
       SleepTimer.PopUp = false;
     }
@@ -326,7 +331,8 @@ void mouseClicked() {
   }
 
 
-  // --- BUTTONS IN MENU --- MARTIN PLS
+  // --- BUTTONS IN MENU ---
+  //sets the if it should render boolean to true if the drop down menu closed and the hamburger icon is clicked otherwise if its alredy open it will check which if the buttons have been click if any and set app state to corresponding button index and then close the menu
   if (appState != 0 && mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
     Menu.Open = !Menu.Open;
   } else if (Menu.Open) {
