@@ -271,6 +271,8 @@ void mouseClicked() {
   }
 
   // --- BUTTONS IN SleepTimer ---
+  //if the page is being renderd it checks if the SleepTimer StartStop button is hoverd and if so changes it from Start to Stop or opposite
+  //if started and hasent been started before (sleeptimer sleeping for says "N/A") it sets the startTime to that current time since jan 1 1970 in milliseconds, else it to the same but minus currentSleep
   if (appState == 4) {
     if (SleepTimer.StartStop.mouseHovered()) {
       if (SleepTimer.StartStop.Label.Text == "Start") {
@@ -285,21 +287,23 @@ void mouseClicked() {
       }
     }
 
+  //checks if the SleepTimer Reset button is hoverd and if so resets the alarm by setting the text for SleepTimer SleepingFor label to "N/A" and SleepTimer StartStop label to "Start"
     if (SleepTimer.Reset.mouseHovered()) {
       SleepTimer.SleepingFor.Text = "N/A";
       SleepTimer.StartStop.Label.Text = "Start";
-      if (currentSleep > 25200000) {
+      if (currentSleep > 25200000) { //if the current sleep is over 7h in miliseconds a star gets added and it enables the popup and sets the text
         starCount++;
         SleepTimer.PopUp = true;
         SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"7 hours you get 1 star!";
-        if (currentSleep > 28800000) {
+        if (currentSleep > 28800000) { //if the current sleep is over 8h in miliseconds a star gets added and sets the text
           starCount++;
           SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"8 hours you get 2 stars!";
         }
       }
-      currentSleep = 0;
+      currentSleep = 0; //resets the current sleep
     }
- //<>//
+
+  //checks if the SleepTimer pop up exit button is hoverd and if sleep timer pop up is enabled, if so it disables the popup //<>//
     if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
       SleepTimer.PopUp = false;
     }
