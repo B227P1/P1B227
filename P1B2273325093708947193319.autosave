@@ -1,17 +1,11 @@
-// Welcome dear examinors! We hope you enjoy our program, and give us a 12 LUL //<>// //<>//
+// Welcome dear examinors! We hope you enjoy our program, and give us a 12 LUL
 boolean init = false, cheat = true; //cheat allows the cheats to be used (for testing/evaluating)
 int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; /*alarmHour is used to store which Hour in the day the user is currently on, alarmMinute is used to store which Minute in the day the user is currently on,
-sizeX is used to store width, sizeY is used to store height, tutorialState determines which screen the program is on during the tutorial, starCount is the amout of star the user has, hatEquipped is the current hat the user has,
-appState determines which screen the program is on*/
-
+sizeX is used to store width, sizeY is used to store height, tutorialState determines which screen the program is on during the tutorial, starCount is the amout of star the user has, hatEquipped is the current hat the user has, appState determines which screen the program is on*/
 String input = ""; // this is needed for the input in daily input
-long startTime, currentSleep, AlarmInSec; /*startTime is used to save at which point in time the user started the timer since jan 1 1970, currentSleep is used to store how much the user currently has slept in miliseconds, 
-AlarmInSec is used to store how long til the alarm in seconds*/
-
+long startTime, currentSleep, AlarmInSec; //startTime is used to save at which point in time the user started the timer since jan 1 1970, currentSleep is used to store how much the user currently has slept in miliseconds, AlarmInSec is used to store how long til the alarm in seconds
 double dailySeconds; //number of seconds transpired so far in a day
-PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; /*tutorialImgs array for the images used for tutoral, hatImages array used to store images of the hats the wizard lizard can wear, 
-images array used to store miscellaneous images used in the program and the main screens*/
-
+PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; //tutorialImgs array for the images used for tutoral, hatImages array used to store images of the hats the wizard lizard can wear, images array used to store miscellaneous images used in the program and the main screens
 String[] advices = new String[7]; // stores all the possible advices that the Wizard Lizard can give
 PShape starShape;
 Table data; // the table that holds the savable/loadable data
@@ -109,18 +103,18 @@ void draw() {
   case 1:
     MainScreen.render();
     MainScreen.setStarPositions();
-    break; //<>//
-  case 2: //<>//
-    DailyInput.render(); //<>//
-    break; //<>//
-  case 3:  //<>//
-    Alarm.render(); //<>//
-    break; //<>//
-  case 4: //<>//
-    SleepTimer.render(); //<>//
-    break; //<>//
-  case 5: //<>//
-    Logs.render(); //<>//
+    break;
+  case 2:
+    DailyInput.render();
+    break;
+  case 3: 
+    Alarm.render();
+    break;
+  case 4:
+    SleepTimer.render();
+    break;
+  case 5:
+    Logs.render();
     break;
   case 6: 
     Customization.render(); 
@@ -175,17 +169,17 @@ void mouseClicked() {
     showAdvice(width*0.655, height*0.172, 320, 200, 1, 45); // makes the Wizard Lizard react to purchasing the hat
   }
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
-    starCount -= Customization.hatPrices[Customization.inventorySlots[1]]; //<>//
+    starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
     Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
-    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45); // makes the Wizard Lizard react to purchasing the hat //<>//
+    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45); // makes the Wizard Lizard react to purchasing the hat
   } 
- //<>//
+
   // --- BUTTONS IN DAILYINPUT ---
- //<>//
+
   if (DailyInput.saveHovered()) {
-    appState = 1; //<>//
+    appState = 1;
   }
-  if (DailyInput.productiveHovered()) { //<>//
+  if (DailyInput.productiveHovered()) {
     DailyInput.productive = 1;
   }
   if (DailyInput.unproductiveHovered()) {
@@ -271,8 +265,6 @@ void mouseClicked() {
   }
 
   // --- BUTTONS IN SleepTimer ---
-  //if the page is being renderd it checks if the SleepTimer StartStop button is hoverd and if so changes it from Start to Stop or opposite
-  //if started and hasent been started before (sleeptimer sleeping for says "N/A") it sets the startTime to that current time since jan 1 1970 in milliseconds, else it to the same but minus currentSleep
   if (appState == 4) {
     if (SleepTimer.StartStop.mouseHovered()) {
       if (SleepTimer.StartStop.Label.Text == "Start") {
@@ -287,28 +279,26 @@ void mouseClicked() {
       }
     }
 
-  //checks if the SleepTimer Reset button is hoverd and if so resets the alarm by setting the text for SleepTimer SleepingFor label to "N/A" and SleepTimer StartStop label to "Start"
     if (SleepTimer.Reset.mouseHovered()) {
       SleepTimer.SleepingFor.Text = "N/A";
       SleepTimer.StartStop.Label.Text = "Start";
-      if (currentSleep > 25200000) { //if the current sleep is over 7h in miliseconds a star gets added and it enables the popup and sets the text
+      if (currentSleep > 25200000) {
         starCount++;
-        SleepTimer.PopUp = true; //<>//
+        SleepTimer.PopUp = true;
         SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"7 hours you get 1 star!";
-        if (currentSleep > 28800000) { //if the current sleep is over 8h in miliseconds a star gets added and sets the text
+        if (currentSleep > 28800000) {
           starCount++;
           SleepTimer.PopUpText.Text = "congratulations!"+ENTER+"you slept for more than"+ENTER+"8 hours you get 2 stars!";
-        } //<>//
+        }
       }
-      currentSleep = 0; //resets the current sleep
+      currentSleep = 0;
     }
 
-  //checks if the SleepTimer pop up exit button is hoverd and if sleep timer pop up is enabled, if so it disables the popup //<>//
     if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
       SleepTimer.PopUp = false;
     }
   }
- //<>//
+
   // --- BUTTONS IN LOGS ---
   if (appState == 5) {
     if (Logs.pageState == 1 || Logs.pageState == 2) {

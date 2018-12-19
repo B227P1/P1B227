@@ -12,7 +12,7 @@ class DailyInput {
     image(images[11], width/2, height*0.76, 282, 190);
     Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
 
-    // makes the currently active input's textsize bigger (for feedback)
+    // makes the currently active input's textsize bigger (for better feedback)
     rectMode(CENTER);
     strokeWeight(10);
     noFill();
@@ -30,7 +30,7 @@ class DailyInput {
       rect(width*0.75, height*0.47, 167, 43, 15);
     }
     strokeWeight(5);
-    // wakeup/bed- time
+    // wakeup/bed- time input box outline (to give feedback to the user)
     if (pageState == 2 || pageState == 3) {
       rect(width*0.255, height*0.715, 163, 31, 20);
     }
@@ -39,7 +39,7 @@ class DailyInput {
     }
     strokeWeight(1);
 
-
+  // when the popup window appears, this makes the color of the yes/no buttons different, when the cursor is hovered over them (to give feedback to user)
     if (pageState == 1) {
       int yescol = 0, nocol = 0;
       if (yesHovered()) {
@@ -52,6 +52,8 @@ class DailyInput {
       } else {
         nocol = 0;
       }
+      
+      // the popup window (opens when the "ok" button is clicked inside the wake-time input box (and the input values are valid))
       rectMode(CENTER);
       strokeWeight(1);
       fill(210, 210, 210, 210);
@@ -67,13 +69,15 @@ class DailyInput {
       fill(nocol);
       text("NO", width*0.75, height*0.63);
     }
+    
+    // the "ok" buttons for wake up- and bedtime
     textSize(20);
     fill(255);
     textAlign(CENTER);
     text("OK", width*0.38, height*0.725);
     text("OK", width*0.38, height*0.83);
 
-    // for the wake-up / bedtime input
+    // controls the size of the four different inputs, to tell the user which one is currently active
     switch(pageState) {
     case 2:
       wakeHourSize = 35;
@@ -106,6 +110,7 @@ class DailyInput {
       bedMinuteSize = 25;
       break;
     }
+    // the input value feedback
     textSize(wakeHourSize);
     text(wakeTimeHour+"  :", width*0.25, height*0.725);
     textSize(wakeMinuteSize);
