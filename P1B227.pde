@@ -1,16 +1,16 @@
-// Welcome dear examinors! We hope you enjoy our program, and give us a 12 LUL //<>// //<>//
+ //<>//
 boolean init = false, cheat = true; //cheat allows the cheats to be used (for testing/evaluating)
 int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; /*alarmHour is used to store which Hour in the day the user is currently on, alarmMinute is used to store which Minute in the day the user is currently on,
-sizeX is used to store width, sizeY is used to store height, tutorialState determines which screen the program is on during the tutorial, starCount is the amout of star the user has, hatEquipped is the current hat the user has,
-appState determines which screen the program is on*/
+ sizeX is used to store width, sizeY is used to store height, tutorialState determines which screen the program is on during the tutorial, starCount is the amout of star the user has, hatEquipped is the current hat the user has,
+ appState determines which screen the program is on*/
 
 String input = ""; // this is needed for the input in daily input
 long startTime, currentSleep, AlarmInSec; /*startTime is used to save at which point in time the user started the timer since jan 1 1970, currentSleep is used to store how much the user currently has slept in miliseconds, 
-AlarmInSec is used to store how long til the alarm in seconds*/
+ AlarmInSec is used to store how long til the alarm in seconds*/
 
 double dailySeconds; //number of seconds transpired so far in a day
 PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; /*tutorialImgs array for the images used for tutoral, hatImages array used to store images of the hats the wizard lizard can wear, 
-images array used to store miscellaneous images used in the program and the main screens*/
+ images array used to store miscellaneous images used in the program and the main screens*/
 
 String[] advices = new String[7]; // stores all the possible advices that the Wizard Lizard can give
 PShape starShape;
@@ -97,7 +97,7 @@ void setup() {
 void draw() {
   //calculates the seconds transpired in a day
   dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d;
-  
+
   //calculates the seconds til alarm
   AlarmInSec = alarmHour*3600+alarmMinute*60 - (long)dailySeconds > 0 ? alarmHour*3600+alarmMinute*60 - (long)dailySeconds : alarmHour*3600+alarmMinute*60 - (long)dailySeconds + 86400;
 
@@ -181,7 +181,7 @@ void mouseClicked() {
   } 
  //<>//
   // --- BUTTONS IN DAILYINPUT ---
- //<>//
+  //<>//
   if (DailyInput.saveHovered()) {
     appState = 1; //<>//
   }
@@ -287,7 +287,7 @@ void mouseClicked() {
       }
     }
 
-  //checks if the SleepTimer Reset button is hoverd and if so resets the alarm by setting the text for SleepTimer SleepingFor label to "N/A" and SleepTimer StartStop label to "Start"
+    //checks if the SleepTimer Reset button is hoverd and if so resets the alarm by setting the text for SleepTimer SleepingFor label to "N/A" and SleepTimer StartStop label to "Start"
     if (SleepTimer.Reset.mouseHovered()) {
       SleepTimer.SleepingFor.Text = "N/A";
       SleepTimer.StartStop.Label.Text = "Start";
@@ -303,12 +303,12 @@ void mouseClicked() {
       currentSleep = 0; //resets the current sleep
     }
 
-  //checks if the SleepTimer pop up exit button is hoverd and if sleep timer pop up is enabled, if so it disables the popup //<>//
+    //checks if the SleepTimer pop up exit button is hoverd and if sleep timer pop up is enabled, if so it disables the popup //<>//
     if (SleepTimer.ExitPopUp.mouseHovered() && SleepTimer.PopUp) {
       SleepTimer.PopUp = false;
     }
   }
- //<>//
+  //<>//
   // --- BUTTONS IN LOGS ---
   if (appState == 5) {
     if (Logs.pageState == 1 || Logs.pageState == 2) {

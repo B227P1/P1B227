@@ -7,7 +7,7 @@ class DailyInput {
 
   void render() {
     image(images[1], 0, 0, width, height); // background image
-    
+
     // draws the Wizard Lizard and the currently equipped hat
     image(images[11], width/2, height*0.76, 282, 190);
     Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
@@ -39,7 +39,7 @@ class DailyInput {
     }
     strokeWeight(1);
 
-  // when the popup window appears, this makes the color of the yes/no buttons different, when the cursor is hovered over them (to give feedback to user)
+    // when the popup window appears, this makes the color of the yes/no buttons different, when the cursor is hovered over them (to give feedback to user)
     if (pageState == 1) {
       int yescol = 0, nocol = 0;
       if (yesHovered()) {
@@ -52,7 +52,7 @@ class DailyInput {
       } else {
         nocol = 0;
       }
-      
+
       // the popup window (opens when the "ok" button is clicked inside the wake-time input box (and the input values are valid))
       rectMode(CENTER);
       strokeWeight(1);
@@ -69,7 +69,7 @@ class DailyInput {
       fill(nocol);
       text("NO", width*0.75, height*0.63);
     }
-    
+
     // the "ok" buttons for wake up- and bedtime
     textSize(20);
     fill(255);

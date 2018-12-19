@@ -74,19 +74,19 @@ class SleepTimer {
       TimeTilAlarm.Text = "No alarm set"; //sets the text
     }
 
-    
+
     Reset.render();  //renders the Reset button
     StartStop.render();  //renders the Reset button
     TimeTilAlarm.render();  //renders the Reset button
     SleepingFor.render();  //renders the Reset button
     if (PopUp) {   //checks if it should render the pop up
-    //renders the box part of the pop up
+      //renders the box part of the pop up
       stroke(0);
       strokeWeight(2);
       fill(50, 50, 150);
       rectMode(CENTER);
       rect(width/2, height/2, width*0.75, height/2);
-      
+
       PopUpText.render(); //Renders the pop up text
       ExitPopUp.render(); //Renders the pop up exit button
     }

@@ -18,14 +18,14 @@ class MainScreen {
 
 
   void render() {
-    
+
     // draws the background image, the Wizard Lizard, and the hat that is currently equipped
     image(images[0], 0, 0, width, height);
     imageMode(CENTER);
     image(images[8], width*0.23, height*0.835, 275, 205);
     imageMode(CORNER);
     Customization.equipHat(width*-0.5, height*1.09, 0.6, -20);
-    
+
     // when the user enters the screen, this checks if the user has at least 10 stars, and if they do, it makes the Wizard Lizard praise the user (by calling the showAdvice() function)
     if (enter && starCount>9) {
       showAdvice(width*0.496, height*0.583, 320, 200, 0, 45);

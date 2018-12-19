@@ -50,7 +50,7 @@ class Alarm {
 
     //update the mouse vector position
     Mouse = new PVector(mouseX, mouseY);
-    
+
     //get the angle of the mouse relative to offset using tangent
     angle = Mouse.copy().sub(offset).normalize().y < 0 ? atan(Mouse.copy().sub(offset).normalize().x/Mouse.copy().sub(offset).normalize().y)+PI : atan(Mouse.copy().sub(offset).normalize().x/Mouse.copy().sub(offset).normalize().y);
 
@@ -78,7 +78,7 @@ class Alarm {
     strokeWeight(5);
     line(offset.x, offset.y, LilHand.x, LilHand.y); //draws the lil hand
     line(offset.x, offset.y, BigHand.x, BigHand.y); //draws the big hand
-    
+
     Digital.render(); //renders the digital clock below the analog clock
     AmPm.render(); //renders the Am Pm toggle button
     OnOff.render(); //renders the on of button for the alarm

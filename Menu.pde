@@ -39,7 +39,7 @@ class Menu {
         MenuButtons.get(appState-1).buttonColor = color(200);
       }
 
-    //renders all the buttons if menu is open
+      //renders all the buttons if menu is open
       for (int i = 0; i < MenuButtons.size(); i++) {
         MenuButtons.get(i).render();
       }

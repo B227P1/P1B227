@@ -11,12 +11,12 @@ class Logs {
 
 
   void render() {
-    
+
     // draws the background, the Wizard Lizard, and the hat that is currently equipped
     image(images[4], 0, 0, width, height);
     image(images[8], width*-0.1, height*0.8, 255, 185);
     Customization.equipHat(width*-0.78, height*1.47, 0.5, -20);
-    
+
     // draws the images of the two different days that can be checked out, based on the pageState (this is controlled in void mouseClicked())
     imageMode(CENTER);
     switch(pageState) {
@@ -30,12 +30,12 @@ class Logs {
       break;
     }
     imageMode(CORNER);
-    
+
     // draws the "November" text on top of the calendar
     textAlign(CENTER);
     textSize(65);
     fill(200);
-    text("November",width/2,width*0.35);
+    text("November", width/2, width*0.35);
   }
 
   // the methods below determine if the cursor is hovered over either one of the interactive days (the 2nd and the 16th )

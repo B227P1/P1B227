@@ -32,7 +32,7 @@ class Customization {
     text(starCount, width/5, height/6);
     shape(starShape, width/5+25, height/6-17, 40, 40);
 
-  // changes the two button objects colors. One value is when it is active, one when the cursor is hovered over it, one when it is inactive
+    // changes the two button objects colors. One value is when it is active, one when the cursor is hovered over it, one when it is inactive
     if (pageState == 1) {
       InventoryButton.buttonColor = color(155, 155, 155, 30);
     } else if (InventoryButton.mouseHovered()) {
@@ -47,7 +47,7 @@ class Customization {
     } else {
       ShopButton.buttonColor = color(255, 255, 255, 30);
     }
-    
+
     // draws the Wizard Lizard and the currently equipped hat
     imageMode(CENTER);
     image(images[8], width/2, height/2*0.9, 300, 215);
@@ -89,12 +89,12 @@ class Customization {
       }
     }
 
-  // renders the two MCButton objects
+    // renders the two MCButton objects
     InventoryButton.render();
     ShopButton.render();
   }
 
-// --- METHODS OF THE CLASS --- 
+  // --- METHODS OF THE CLASS --- 
 
   // FUNCTION TO DRAW THE HAT ON THE LIZARD (DRAWS THE HAT THAT IS CURRENTLY EQUIPPED, HENCE THE SWITCH)
   void equipHat(float xpos, float ypos, float scale, float degree) {
@@ -115,7 +115,7 @@ class Customization {
     popMatrix();
   }
 
-// determines if the cursor is hovered over any of the inventory slots
+  // determines if the cursor is hovered over any of the inventory slots
   boolean slot0Hovered() {
     if (mouseX>width*0.07 && mouseX<width*0.4 && mouseY>height*0.71 && mouseY<height*0.9) {
       return true;
