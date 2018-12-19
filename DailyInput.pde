@@ -2,16 +2,17 @@ class DailyInput {
   int pageState = 0; // 0 is default, 1 is when the popup window appears, 2 is wakeup minute input is active, 3 when hour active, 4 is bedtime minute input is active, 5 bedtime hour active
   int productive = 0, energy = 0; // 0 is when nothing is selected, 1 is productive/energetic, 2 is unproductive/tired
   boolean save = false; // turns true when everything is filled out, and the data can be saved
-  int wakeTimeHour = 0, wakeTimeMinute = 0, bedTimeHour = 0, bedTimeMinute = 0;
-  int wakeHourSize = 25, wakeMinuteSize = 25, bedHourSize = 25, bedMinuteSize = 25;
+  int wakeTimeHour = 0, wakeTimeMinute = 0, bedTimeHour = 0, bedTimeMinute = 0; // these hold the values of the wake-up time and the bed-time
+  int wakeHourSize = 25, wakeMinuteSize = 25, bedHourSize = 25, bedMinuteSize = 25; // these determine the size of the text that gives the user a real-time feedback on the value they are inputting
 
   void render() {
-    image(images[1], 0, 0, width, height);
+    image(images[1], 0, 0, width, height); // background image
+    
+    // draws the Wizard Lizard and the currently equipped hat
     image(images[11], width/2, height*0.76, 282, 190);
-
     Customization.equipHat(width*1.65, height*0.82, 0.6, 20);
 
-    // outlines for the selected input
+    // makes the currently active input's textsize bigger (for feedback)
     rectMode(CENTER);
     strokeWeight(10);
     noFill();
@@ -115,8 +116,10 @@ class DailyInput {
     text(bedTimeMinute, width*0.3, height*0.83);
     fill(255);
     textSize(33);
-    text("Max hour value: 23, max minute value: 59",width*0.45,height*0.65);
+    text("Max hour value: 23, max minute value: 59", width*0.45, height*0.65);
   }
+
+  // --- all the self-defined functions below are used to determine if certain buttons/elements are being hovered on this screen --------------
 
   boolean productiveHovered() {
     if (mouseX>width*0.07 && mouseX<width*0.43 && mouseY>height*0.32 && mouseY<height*0.37 && appState == 2) {
