@@ -1,15 +1,16 @@
-//Main file subject to change <mikkel was here> //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+// Welcome dear examinors! We hope you enjoy our program, and give us a 12 LUL //<>//
 boolean init = false, cheat = true; //cheat allows the cheats to be used (for testing/evaluating)
 int alarmHour, alarmMinute, sizeX, sizeY, tutorialState, starCount, hatEquipped, appState; // appState determines which state program is in
-String input = "";
+String input = ""; // this is needed for the input in daily input
 float SleepingForTime;
-long startTime, stopTime, currentSleep, AlarmInSec;
+long startTime, stopTime, currentSleep, AlarmInSec; // MARTIN WTF IS DIS
 double dailySeconds;
 PImage[] tutorialImgs = new PImage[10], hatImages = new PImage[3], images = new PImage[20]; // images array for the images used
-String[] advices = new String[7];
+String[] advices = new String[7]; // stores all the possible advices that the Wizard Lizard can give
 PShape starShape;
-Table data;
+Table data; // the table that holds the savable/loadable data
 
+// declaring the six page objects + the menu
 MainScreen MainScreen;
 DailyInput DailyInput;
 Alarm Alarm;
@@ -23,6 +24,7 @@ void setup() {
   frameRate(60);
   textFont(loadFont("freestyle.vlw"));
 
+  // instantiation of the six page object + the drop-down menu
   MainScreen = new MainScreen();
   DailyInput = new DailyInput();
   Alarm = new Alarm();
@@ -31,9 +33,11 @@ void setup() {
   Customization = new Customization();
   Menu = new Menu();
 
+  // loading the data table, and instantiates the TableRow object, where the saveable/loadable data is stored (on the first row)
   data = loadTable("data.csv", "header");
   TableRow row1 = data.getRow(0);
 
+  // these variables are used in Customization, to correctly allign the buttons compared to the window size
   sizeX = width; 
   sizeY = height;
 
@@ -73,22 +77,22 @@ void setup() {
   advices[5] = "Hmm I really want"+ENTER+"a new hat.";
   advices[6] = "Based on your sleep time,"+ENTER+"I predict that you will"+ENTER+"feel productive and energized!";
 
-  appState = row1.getInt("appState");
 
+  // initializes variables with the values loaded from the table (this is all the loaded data)
   Customization.hatsOwned[0] = row1.getInt("hat0Owned");
   Customization.hatsOwned[1] = row1.getInt("hat1Owned");
   Customization.hatsOwned[2] = row1.getInt("hat2Owned");
 
+  appState = row1.getInt("appState");
   starCount = row1.getInt("starCount");
-
   hatEquipped = row1.getInt("hatEquipped");
 }
 
 void draw() {
-  dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d;
+  dailySeconds = hour()*3600d+minute()*60d+second()+(System.currentTimeMillis()%1e3d)/1e3d; // how dis work MARTIN MAAARTIIIN
   AlarmInSec = alarmHour*3600+alarmMinute*60 - (long)dailySeconds > 0 ? alarmHour*3600+alarmMinute*60 - (long)dailySeconds : alarmHour*3600+alarmMinute*60 - (long)dailySeconds + 86400;
-  println(appState);
 
+  // the switch responsible for rendering the right page and the right elements on the screen.
   switch(appState) {
   case 0:
     tutorial();
@@ -105,35 +109,39 @@ void draw() {
     break;
   case 4:
     SleepTimer.render();
-    break;
-  case 5:
-    Logs.render();
+    break; //<>//
+  case 5: //<>//
+    Logs.render(); //<>//
     break;
   case 6: 
     Customization.render(); 
     break;
   }
 
+  // renders the drop-down menu (unless the appState is 0, i.e. the tutorial is not active)
   if (appState != 0) {
     Menu.render();
   }
 }
 
 void mouseClicked() {
+
+  // this gets the program running again (when the Wizard Lizard gives advice, a noLoop() is called, to keep the advice on the screen, until the user clicks again)
   loop();
+
+  // this is only ran once after the program has been started. It's purpose is show the prediction of the Wizard Lizard about the user's mood, and to set the buttons up in Customization (this was required for proper width and height scaling)
   if (init == false && appState != 0) {
     showAdvice(width*0.496, height*0.583, 320, 200, 6, 40);
     Customization.setupButtons();
     init = true;
   }
+  // if the tutorial is active, this makes it switch to the next picture on click
   if (appState == 0) {
     tutorialState++;
   }
-  println("-----");
-  println(mouseX);
-  println(mouseY);
 
-  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ---
+  // --- BUTTONS CLICK FUNCTION FOR CUSTOMIZATION ----------------------------------------
+  // -- buttons for switching between the shop and the inventory
   if (Customization.InventoryButton.mouseHovered() && appState == 6) { 
     Customization.pageState = 1;
   }
@@ -144,34 +152,34 @@ void mouseClicked() {
   // --- BUTTONS FOR EQUIPPING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[0];
-    showAdvice(width*0.655, height*0.172, 320, 200, 2, 45);
+    showAdvice(width*0.655, height*0.172, 320, 200, 2, 45); // makes the Wizard Lizard react to equipping of the hat
   } 
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 1) {
     hatEquipped = Customization.inventorySlots[1];
-    showAdvice(width*0.655, height*0.172, 320, 200, 2, 45);
+    showAdvice(width*0.655, height*0.172, 320, 200, 2, 45); // makes the Wizard Lizard react to equipping of the hat
   }
 
   // --- BUTTONS FOR BUYING HATS ---
   if (appState == 6 && Customization.slot0Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[0]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[0]];
     Customization.hatsOwned[Customization.inventorySlots[0]] = 1;
-    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45);
+    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45); // makes the Wizard Lizard react to purchasing the hat
   }
   if (appState == 6 && Customization.slot1Hovered() && Customization.pageState == 2 && starCount-Customization.hatPrices[Customization.inventorySlots[1]] >0) {
     starCount -= Customization.hatPrices[Customization.inventorySlots[1]];
     Customization.hatsOwned[Customization.inventorySlots[1]] = 1;
-    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45);
+    showAdvice(width*0.655, height*0.172, 320, 200, 1, 45); // makes the Wizard Lizard react to purchasing the hat
   } 
 
   // --- BUTTONS IN DAILYINPUT ---
 
   if (DailyInput.saveHovered()) {
-    appState = 1;
+    appState = 1; //<>//
   }
   if (DailyInput.productiveHovered()) {
     DailyInput.productive = 1;
   }
-  if (DailyInput.unproductiveHovered()) {
+  if (DailyInput.unproductiveHovered()) { //<>//
     DailyInput.productive = 2;
   }
   if (DailyInput.energizedHovered()) {
@@ -199,6 +207,8 @@ void mouseClicked() {
   if (DailyInput.bedMinuteHovered()) {
     DailyInput.pageState = 5;
   }
+
+  // this checks if the input is valid (since the user is supposed to enter a time, max hour value is 23, max minute value is 59)
   if (DailyInput.wakeOkHovered()) {
     input = "";
     if (DailyInput.wakeTimeHour<24) {
@@ -208,7 +218,7 @@ void mouseClicked() {
         if (DailyInput.wakeTimeHour>7) {
           DailyInput.bedTimeHour = DailyInput.wakeTimeHour-8;
         } else {
-          int i = DailyInput.wakeTimeHour-8;
+          int i = DailyInput.wakeTimeHour-8; // calculates the recommended bedtime, than sets the bedTimeHour to that value (one line down)
           DailyInput.bedTimeHour = 24+i;
         }
       }
@@ -219,6 +229,7 @@ void mouseClicked() {
     if (DailyInput.bedTimeHour<24 && DailyInput.bedTimeMinute<60) {
     }
   }
+  // ---buttons for the popup screen ("do you want to set an alarm for the desired wake-up time?") ---------
   if (DailyInput.yesHovered()) {
     DailyInput.pageState = 0;
     alarmHour = DailyInput.wakeTimeHour;
@@ -229,7 +240,7 @@ void mouseClicked() {
     DailyInput.pageState = 0;
   }
 
-  // --- BUTTONS IN ALARM ---
+  // --- BUTTONS IN ALARM --- MARTIN THIS IS YOUR RESORT
   if (appState == 3) {
     if (Alarm.AmPm.mouseHovered()) {
       if (Alarm.AmPm.Label.Text == "Pm") {
@@ -282,7 +293,7 @@ void mouseClicked() {
       SleepTimer.PopUp = false;
     }
   }
-
+ //<>//
   // --- BUTTONS IN LOGS ---
   if (appState == 5) {
     if (Logs.inputState == 1 || Logs.inputState == 2) {
@@ -295,6 +306,8 @@ void mouseClicked() {
   if (Logs.ndHovered()) {
     Logs.inputState= 1;
   }
+
+  // --- MAKES THE WIZARD LIZARD GIVE A RANDOM SLEEP-ADVICE WHEN IT IS CLICKED (THE POSITION OF THE TEXTBOX IS BASED ON WHICH PAGE IS ACTIVE) ---
   if (wizardHovered()) {
     switch(appState) {
     case 1:
@@ -313,7 +326,7 @@ void mouseClicked() {
   }
 
 
-  // --- BUTTONS IN MENU ---
+  // --- BUTTONS IN MENU --- MARTIN PLS
   if (appState != 0 && mouseX > Menu.BurgerOffset.x && mouseX < Menu.BurgerOffset.x+Menu.BurgerSize.x && mouseY > Menu.BurgerOffset.y && mouseY < Menu.BurgerOffset.y+Menu.BurgerSize.y && !Menu.Open) {
     Menu.Open = !Menu.Open;
   } else if (Menu.Open) {
@@ -332,6 +345,7 @@ void keyPressed() {
   if (key == 's') {
     saveData();
   }
+  // --- THE CHEAT FUNCTIONS USED IN THE EVALUATION, TO SET UP CERTAIN SCENARIOS (also used for testing) ---
   if (key == 'a' && cheat) {
     starCount += 10;
   }
@@ -343,19 +357,11 @@ void keyPressed() {
     startTime -= 3600000;
   }
 
-  //if (keyCode == LEFT) {
-  //  appState--;
-  //  appState = appState < 1 ? 1 : appState;
-  //}
-  //if (keyCode == RIGHT) {
-  //  appState++;
-  //  appState = appState > 6 ? 6 : appState;
-  // }
   // input for wake-up and bedtime in daily input
-  if (appState == 2 && DailyInput.pageState>1 && DailyInput.pageState<6 && input.length()!=2) {
+  if (appState == 2 && DailyInput.pageState>1 && DailyInput.pageState<6 && input.length()!=2) { // the last condition here stops the user from writing a value more than 2 numbers long (since the max hour value is 23 and the max minute value is 59) 
     if (key >= '0' && key <= '9') {
       input += key;
-      switch(DailyInput.pageState) {
+      switch(DailyInput.pageState) {  // determines which value is being entered, based on the pageState of the Daily Input object
       case 2:
         DailyInput.wakeTimeHour = int(input);
         break;
@@ -369,14 +375,15 @@ void keyPressed() {
         DailyInput.bedTimeMinute = int(input);
         break;
       }
+      // makes the hour input automatically jump to the minute input, when 2 characters have been entered (to make the user's life more convinient). The modulo is there to limit this to the hour-minute input change
       if (input.length() == 2 && DailyInput.pageState%2==0) {
         DailyInput.pageState++;
-        input = "";
+        input = ""; // changes the input value back to nothing, so that the user can enter something new
       }
     }
   }
 }
-// --- FUNCTIONS USED IN THE PROGRAM -------------------------------------------------------------
+// --- SELF-DEFINED FUNCTIONS USED IN THE PROGRAM -------------------------------------------------------------
 
 //--SAVE FUNCTION--
 void saveData() {
@@ -421,11 +428,11 @@ void tutorial() {
     image(tutorialImgs[8], 0, 0, width, height);
     break;
   default:
-    appState++;
+    appState++; // this makes the app exit the tutorial into the main screen, once it is over
   }
 }
 
-// returns true when the cursor is over the Lizard, returns false when it is not
+// returns true when the cursor is over the Lizard, returns false when it is not (different positions are required because the Wizard Lizard's location changes from page-to-page)
 boolean wizardHovered() {
   switch(appState) {
   case 1:
@@ -466,5 +473,5 @@ void showAdvice(float xpos, float ypos, float wide, float high, int advNum, int 
   textSize(textSize);
   text(advices[advNum], xpos, ypos-50);
   imageMode(CORNER);
-  noLoop();
+  noLoop(); // this makes the text stay on the screen, until loop() is called (when the user clicks the mouse again)
 }
